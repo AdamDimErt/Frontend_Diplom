@@ -1,26 +1,42 @@
 /** @format */
 
-import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getTranslations } from "next-intl/server";
+import { notFound } from "next/navigation";
+import Header from "@/widgets/header/ui/Header";
 import "./globals.css";
 import "@/shared/styles/variables.css";
-import Header from "@/widgets/header/ui/Header";
 
-export const metadata: Metadata = {
+export const metadata = {
   title: "shop",
   description: "shop",
 };
 
-export default function RootLayout({
+export default async function LocaleLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+  params: { locale },
+}: any) {
+  let messages;
+  try {
+    messages = (
+      await import(
+        `@/shared/config/i18n/locales/${locale}.json`
+      )
+    ).default;
+  } catch (error) {
+    notFound();
+  }
+
   return (
-    <html lang='en'>
+    <html lang={locale}>
       <body>
-        <Header />
-        
-        {children}
+        <NextIntlClientProvider
+          locale={locale}
+          messages={messages}
+        >
+          <Header />
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
