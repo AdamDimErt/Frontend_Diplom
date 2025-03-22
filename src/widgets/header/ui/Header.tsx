@@ -1,7 +1,7 @@
 /** @format */
 import React from "react";
 import styles from "./Header.module.scss";
-import LanguageSwitcher from "@/features/language-switch/ui/LanguageSwitcher";
+import LanguageSwitcher from "@/features/languageSwitcher/ui/LanguageSwitcher";
 import Cart from "@/features/cart/ui/Cart";
 import { Profile } from "@/features/profile/ui/Profile";
 
@@ -23,7 +23,15 @@ const Header = () => {
         SmartSphere
       </h3>
       <div className={styles.header__right_menu}>
-        <LanguageSwitcher />
+        <LanguageSwitcher
+          defaultValue='ru'
+          items={[
+            { value: "ru", label: "Русский" },
+            { value: "kz", label: "Қазақ" },
+            { value: "en", label: "англ" },
+          ]}
+          label='Выберите язык'
+        />
         <Cart />
         <Profile />
       </div>
