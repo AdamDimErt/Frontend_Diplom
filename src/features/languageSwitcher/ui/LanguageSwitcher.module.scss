@@ -3,4 +3,29 @@
 .language {
   display: inline-flex;
   position: relative;
+  &__btn {
+    cursor: pointer;
+    background-color: transparent;
+    border: none;
+    font-size: clamp(16px, 1.56vw, 30px);
+  }
+  &__list {
+    position: absolute;
+    list-style: none;
+    font-size: clamp(12px, 1.56vw, 20px);
+    top: 40px;
+    left: 0;
+
+    margin: 0;
+    padding: 8px;
+    &_btn {
+      font-size: clamp(12px, 1.56vw, 20px);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }

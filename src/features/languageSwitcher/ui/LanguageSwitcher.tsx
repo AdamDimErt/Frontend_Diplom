@@ -1,73 +1,77 @@
 /** @format */
-
 "use client";
 
-import { FC, useState } from "react";
+import { useState } from "react";
 import { switchLanguage } from "../api/switchLanguage";
-import type { LocaleSwitcherSelectProps } from "../model/types";
 import styles from "./LanguageSwitcher.module.scss";
+import { locales } from "@/shared/i18n/config";
+import { useLocale } from "next-intl";
 
-const LanguageSwitcherSelect: FC<
-  LocaleSwitcherSelectProps
-> = ({
-  defaultValue,
-  items,
-  label = "Select language",
-}) => {
+import { instrumentSans } from "@/shared/fonts/instrumentSans";
+
+export default function LanguageSwitcherSelect() {
   const [isOpen, setIsOpen] = useState(false);
   const [loading, setLoading] = useState(false);
 
-  async function onChange(value: string) {
-    setLoading(true);
-    await switchLanguage(value);
-    setLoading(false);
-  }
+  // Текущая локаль из next-intl
+  const locale = useLocale();
 
   function toggleDropdown() {
     setIsOpen((prev) => !prev);
   }
 
+  async function handleChangeLanguage(value: string) {
+    try {
+      setLoading(true);
+      await switchLanguage(value);
+    } finally {
+      setLoading(false);
+    }
+  }
+
   return (
-    <div className={styles.language}>
+    <div
+      className={`${styles.language} ${instrumentSans.className}`}
+    >
       <button
-        aria-label={label}
+        className={styles.language__btn}
+        aria-label={locale}
         onClick={toggleDropdown}
         disabled={loading}
       >
-        {label}
-      </button>
-      {isOpen && (
-        <ul
+        {locale}
+        <svg
+          width='25'
+          height='15'
+          viewBox='0 0 25 15'
+          fill='none'
+          xmlns='http://www.w3.org/2000/svg'
           style={{
-            position: "absolute",
-            top: "40px",
-            left: 0,
-            listStyle: "none",
-            margin: 0,
-            padding: "8px",
-            backgroundColor: "#fff",
-            border: "1px solid #ccc",
-            borderRadius: "4px",
+            transform: isOpen ? "rotate(180deg)" : "none",
+            transition: "transform 0.2s ease",
+            marginLeft: "8px", // Чтобы отделить иконку
           }}
         >
-          {items.map((item) => (
-            <li
-              key={item.value}
-              style={{ marginBottom: "4px" }}
-            >
+          <path
+            fillRule='evenodd'
+            clipRule='evenodd'
+            d='M24.4772 0.521977C23.7794 -0.173994 22.649 -0.173994 21.9511 0.521977L12.5003 9.95768L3.04875 0.521977C2.35095 -0.173994 1.22054 -0.173994 0.523351 0.521977C-0.17445 1.21861 -0.17445 2.34712 0.523351 3.04383L11.2369 13.7394L12.5002 15L13.7629 13.7394L24.4771 3.04383C25.1743 2.34719 25.1743 1.21868 24.4772 0.521977Z'
+            fill='black'
+          />
+        </svg>
+      </button>
+
+      {isOpen && (
+        <ul className={styles.language__list}>
+          {locales.map((item) => (
+            <li key={item} style={{ marginBottom: "4px" }}>
               <button
-                onClick={() => onChange(item.value)}
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: "8px",
-                  backgroundColor: "transparent",
-                  border: "none",
-                  cursor: "pointer",
-                }}
+                className={styles.language__list_btn}
+                onClick={() => handleChangeLanguage(item)}
               >
-                {item.label}
-                {item.value === defaultValue && (
+                {item}
+                {/* переделать */}
+                {item === locale && (
                   <span style={{ color: "green" }}>
                     (current)
                   </span>
@@ -79,6 +83,4 @@ const LanguageSwitcherSelect: FC<
       )}
     </div>
   );
-};
-
-export default LanguageSwitcherSelect;
+}

@@ -21,6 +21,7 @@
   &__right_menu {
     display: flex;
     gap: clamp(10px, 5vw, 44px);
-    
+    align-items: center;
+    margin-right: 30px;
   }
 }

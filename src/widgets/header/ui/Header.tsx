@@ -24,13 +24,6 @@ const Header = () => {
       </h3>
       <div className={styles.header__right_menu}>
         <LanguageSwitcher
-          defaultValue='ru'
-          items={[
-            { value: "ru", label: "Русский" },
-            { value: "kz", label: "Қазақ" },
-            { value: "en", label: "англ" },
-          ]}
-          label='Выберите язык'
         />
         <Cart />
         <Profile />
