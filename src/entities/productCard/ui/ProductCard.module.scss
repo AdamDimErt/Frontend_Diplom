@@ -1,0 +1,20 @@
+/** @format */
+
+.cart {
+  width: 312px;
+  border-radius: 15px;
+  background-color: #dfdfdf1a;
+  img {
+    width: 312px;
+    border-radius: 15px;
+  }
+  &__title {
+    font-size: 30px;
+    margin: 0;
+  }
+  &__price {
+    font-size: 36px;
+    color: #43aff0;
+    font-weight: 700;
+  }
+}
