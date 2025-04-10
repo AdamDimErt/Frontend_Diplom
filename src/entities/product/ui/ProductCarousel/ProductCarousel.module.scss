@@ -1,0 +1,53 @@
+/** @format */
+
+.carouselContainer {
+  display: flex;
+  flex-direction: row-reverse;
+  align-items: center; /* или left/center/right — по желанию */
+  gap: 1rem;
+}
+
+.mainImageContainer {
+  width: 400px; /* при желании можно адаптировать под ваш дизайн */
+  height: 400px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+/* Основное изображение */
+.mainImage {
+  object-fit: cover; /* обрезать изображение по контейнеру, если нужно */
+}
+
+/* Контейнер для миниатюр */
+.thumbnailsContainer {
+  display: flex;
+  gap: 0.5rem;
+  flex-direction: column;
+}
+
+/* Обёртка каждой миниатюры */
+.thumbnailWrapper {
+  cursor: pointer;
+
+  border-radius: 4px;
+  opacity: 0.6;
+  transition: all 0.3s ease;
+}
+
+.thumbnailWrapper:hover {
+  opacity: 1;
+}
+
+/* Активная миниатюра */
+.activeThumbnail {
+  opacity: 1;
+}
+
+/* Сами миниатюры (превью) */
+.thumbnail {
+  border-radius: 4px;
+}

@@ -1,0 +1,9 @@
+/** @format */
+.page {
+  height: 100000px;
+}
+
+.catalogGrid {
+  display: flex;
+  gap: 30px;
+}

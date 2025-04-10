@@ -1,0 +1,45 @@
+/** @format */
+
+.colorPalette {
+  display: flex;
+  flex-wrap: wrap; /* или row/column */
+  gap: 8px;
+  width: 285px;
+}
+
+/* Каждый цветной квадратик */
+.swatch {
+  width: 32px;
+  height: 32px;
+  border-radius: 4px;
+  cursor: pointer;
+  position: relative;
+  border: 2px solid transparent;
+  transition: transform 0.2s ease;
+}
+
+.swatch:hover {
+  transform: scale(1.1);
+}
+
+/* Если цвет недоступен */
+.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+/* Иконка "X" для недоступного цвета */
+.disabledIcon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #fff;
+  font-weight: bold;
+}
+
+/* Подсветка выбранного цвета (если нужно) */
+.selected {
+  border: 2px solid #43aff0; /* Основной цвет или любой */
+  transform: scale(1.1);
+}
