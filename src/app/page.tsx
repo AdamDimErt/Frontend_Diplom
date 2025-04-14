@@ -1,56 +1,59 @@
 /** @format */
-
 "use client";
-import { Product } from "@/entities/productCard/model/types";
-import { ProductCard } from "@/entities/productCard/ui/ProductCard";
 
+import { useQuery } from "@tanstack/react-query";
+import {
+  getProductsByLang,
+  getFilteredProducts,
+} from "@/entities/product/api/productApi";
 import styles from "./page.module.css";
 import { useTranslations, useLocale } from "next-intl";
-import  ProductFilter  from "@/features/productFilter/ui/ProductFilter";
-
-const products: Product[] = [
-  {
-    id: "1",
-    title: "Smart speaker Yandex Station Mini",
-    price: 29990,
-    description: "Description 1",
-    imageUrl: "",
-  },
-  {
-    id: "2",
-    title: "Temperature and humidity sensor",
-    price: 11990,
-    description: "Description 2",
-    imageUrl: "",
-  },
-  {
-    id: "3",
-    title: "IP Camera Xiaomi Camera 2K",
-    price: 13990,
-    description: "Description 2",
-    imageUrl: "",
-  },
-  {
-    id: "4",
-    title: "Router Xiaomi Router AX3000",
-    price: 24990,
-    description: "Description 2",
-    imageUrl: "",
-  },
-];
+import ProductFilter from "@/features/productFilter/ui/ProductFilter";
+import { ProductCard } from "@/entities/product/ui/ProductCard";
+import { useState } from "react";
+import { TonPaymentButton } from "@/features/ton-payment/ui/TonPaymentButton";
 
 export default function Home() {
   const t = useTranslations("Test");
   const locale = useLocale();
+
+  // фильтры состояния
+  const [filters, setFilters] = useState<{
+    brandId?: string;
+    colorIds?: string[];
+    minPrice?: number;
+    maxPrice?: number;
+  }>({});
+
+  const hasActiveFilters = Object.keys(filters).length > 0;
+
+  const { data: products, isLoading } = useQuery({
+    queryKey: ["products", locale, filters],
+    queryFn: () =>
+      hasActiveFilters
+        ? getFilteredProducts(locale, filters)
+        : getProductsByLang(locale),
+  });
+
+  if (isLoading) return <div>Загрузка товаров...</div>;
+
   return (
     <div className={styles.page}>
-      hi <p>Current locale: {locale}</p>
+      <p>Current locale: {locale}</p>
       <h1>{t("greeting")}</h1>
+      <TonPaymentButton />
+
       <div className={styles.catalogGrid}>
-        <ProductFilter />
-        {products.map((item) => (
-          <ProductCard key={item.id} product={item} />
-        ))}
+        <ProductFilter onChange={setFilters} />
+
+        <div className={styles.catalogGrid__products}>
+          {products?.map((product) => (
+            <ProductCard
+              key={product.id}
+              product={product}
+            />
+          ))}
+        </div>
       </div>
     </div>
   );

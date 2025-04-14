@@ -1,0 +1,88 @@
+/**
+ * BrandFilter.module.scss
+ *
+ * @format
+ */
+
+/* Общий контейнер компонента */
+.brandFilter {
+  margin: 16px 0;
+  font-family: Arial, sans-serif;
+}
+
+/* Заголовок — верхний регистр, жирный шрифт */
+.title {
+  text-transform: uppercase;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+
+/* Стили для списка брендов */
+.brandList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+/* Каждый элемент списка */
+.brandItem {
+  display: flex;
+}
+
+/* Стилизация label для выравнивания элементов по центру */
+.label {
+  display: inline-flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+/* Скрываем нативный input-радио */
+.radio {
+  display: none;
+}
+
+/* Квадрат для отображения состояния (закрашивается крестиком) */
+.checkmark {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 28px;
+  height: 28px;
+  border: 2px solid #0088ff; /* цвет рамки */
+  border-radius: 4px; /* скругление углов */
+  margin-right: 8px;
+  transition: all 0.2s ease-in-out;
+  color: #0088ff;
+  background-color: transparent;
+  font-weight: bold;
+}
+
+/* Если бренд выбран, квадрат закрашивается и крестик становится белым */
+.checked {
+  background-color: #0088ff;
+  color: #fff;
+}
+
+/* Стили для названия бренда */
+.brandName {
+  font-size: 14px;
+  color: #333;
+}
+
+/* Стили для кнопки "Show more / Show less" */
+.showMore {
+  background: none;
+  border: none;
+  color: #0088ff;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 14px;
+
+  &:hover {
+    text-decoration: underline;
+  }
+}

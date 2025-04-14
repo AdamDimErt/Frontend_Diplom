@@ -9,8 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.74.0",
+    "@tonconnect/ui": "^2.1.0",
+    "axios": "^1.8.4",
     "i18next": "^24.2.3",
     "i18next-http-backend": "^3.0.2",
+    "js-cookie": "^3.0.5",
     "next": "15.2.1",
     "next-i18next": "^15.4.2",
     "next-intl": "^4.0.2",
@@ -21,6 +25,7 @@
   "devDependencies": {
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
+    "@tanstack/react-query-devtools": "^5.74.0",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,0 +1,125 @@
+/**
+ * PriceSlider.module.scss
+ *
+ * @format
+ */
+
+.sliderContainer {
+  width: 100%;
+  font-family: Arial, sans-serif;
+  color: #000;
+}
+
+/* Заголовок (PRICE (₸) | PRICE (∇)) */
+.header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+.selected {
+  font-weight: bold;
+  color: #000; /* Чёрный */
+}
+
+.divider {
+  color: #999; /* Серая черта между */
+}
+
+.alt {
+  color: #00a0ff; /* Голубой (как в скриншоте) */
+}
+
+/* Контейнер для двух ползунков */
+.rangeContainer {
+  position: relative;
+  height: 24px;
+  margin-bottom: 16px;
+}
+
+/* Серая линия на фоне */
+.sliderTrack {
+  position: absolute;
+  width: 100%;
+  height: 2px;
+  background-color: #ccc;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1;
+}
+
+/* Подсветка голубым цветом между ползунками */
+.sliderHighlight {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 2px;
+  background: #00a0ff;
+  z-index: 2;
+}
+
+/* Общие стили для обоих range */
+.range {
+  position: absolute;
+  left: 0;
+  right: 0;
+  width: 100%;
+  pointer-events: none; /* Отключаем события для трека */
+  background: none;
+  outline: none;
+  margin: 0;
+  z-index: 3;
+
+  &::-webkit-slider-thumb {
+    pointer-events: all; /* Включаем события для "ручки" */
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border: 2px solid #00a0ff; /* Голубая обводка */
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0 0 0 1px #fff;
+    margin-top: -7px; /* Чтобы центрировать круг по линии */
+  }
+
+  &::-moz-range-thumb {
+    pointer-events: all;
+    width: 16px;
+    height: 16px;
+    background: #fff;
+    border: 2px solid #00a0ff;
+    border-radius: 50%;
+    cursor: pointer;
+  }
+}
+
+.rangeMin {
+  /* Доп. стили, если нужно. */
+}
+.rangeMax {
+  z-index: 4; /* Выше, чтобы мышь корректно цепляла верхний бегунок */
+}
+
+/* Контейнер с инпутами "3000 to 350000" */
+.inputs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+/* Сами поля ввода */
+.numberInput {
+  border: 2px solid #00a0ff;
+  border-radius: 8px;
+  padding: 4px 8px;
+  width: 80px; /* Ширина поля */
+  font-size: 14px;
+  text-align: center;
+}
+
+/* Текст "to" между полями */
+.to {
+  color: #777;
+  font-weight: bold;
+}
