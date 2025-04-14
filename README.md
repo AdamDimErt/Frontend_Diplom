@@ -1,8 +1,12 @@
+<!-- @format -->
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
 
 First, run the development server:
+GOOGLE_CLIENT_ID = '240945062395-rs06u426adjmtgtdt6bc21kdm4onmfnh.apps.googleusercontent.com'
+GOOGLE_CLIENT_SECRET = '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'
 
 ```bash
 npm run dev

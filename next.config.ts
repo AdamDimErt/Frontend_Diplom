@@ -9,7 +9,9 @@ const withNextIntl = createNextIntlPlugin(
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Дополнительные настройки Next.js, если нужны
+  images: {
+    domains: ["localhost"], // 👈 обязательно!
+  },
 };
 
 export default withNextIntl(nextConfig);

@@ -1,9 +1,13 @@
 /** @format */
 .page {
-  height: 100000px;
 }
 
 .catalogGrid {
   display: flex;
   gap: 30px;
+}
+
+.catalogGrid__products {
+  display: flex;
+  gap: 40px;
 }
