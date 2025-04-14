@@ -39,10 +39,11 @@ export default function Home() {
 
   return (
     <div className={styles.page}>
+      <p>testtesttesttesttees</p>
       <p>Current locale: {locale}</p>
       <h1>{t("greeting")}</h1>
       <TonPaymentButton />
-
+      <p>testtesttesttesttees</p>
       <div className={styles.catalogGrid}>
         <ProductFilter onChange={setFilters} />
 
