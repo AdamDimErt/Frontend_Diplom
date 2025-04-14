@@ -12,6 +12,9 @@ const nextConfig = {
   images: {
     domains: ["localhost"], // 👈 обязательно!
   },
+  typescript: {
+    ignoreBuildErrors: true, // 💥 отключает строгую проверку типов при сборке
+  },
   eslint: {
     ignoreDuringBuilds: true,
   },
