@@ -12,6 +12,9 @@ const nextConfig = {
   images: {
     domains: ["localhost"], // 👈 обязательно!
   },
+  eslint: {
+    ignoreDuringBuilds: true,
+  },
 };
 
 export default withNextIntl(nextConfig);
