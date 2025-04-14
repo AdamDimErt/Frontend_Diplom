@@ -1,7 +1,9 @@
 {
-  "url": "https://eed4-37-99-45-254.ngrok-free.app",
-  "name": "Smart Home Store",
-  "iconUrl": "https://eed4-37-99-45-254.ngrok-free.app/logo.png",
-  "termsOfUseUrl": "https://eed4-37-99-45-254.ngrok-free.app/terms",
-  "privacyPolicyUrl": "https://eed4-37-99-45-254.ngrok-free.app/privacy"
-}
+    "url": "https://frontend-diplom-s5hs.vercel.app",
+    "name": "Smart Home Store",
+    "iconUrl": "https://frontend-diplom-s5hs.vercel.app/logo.png",
+    "termsOfUseUrl": "https://frontend-diplom-s5hs.vercel.app/terms",
+    "privacyPolicyUrl": "https://frontend-diplom-s5hs.vercel.app/privacy",
+    "bridgeUrl": "https://bridge.tonapi.io/bridge"
+  }
+  
