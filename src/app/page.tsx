@@ -44,7 +44,7 @@ export default function Home() {
       {/* <TonPaymentButton /> */}
 
       <div className={styles.catalogGrid}>
-        <ProductFilter onChange={setFilters} />
+        {/* <ProductFilter onChange={setFilters} /> */}
 
         <div className={styles.catalogGrid__products}>
           {products?.map((product) => (

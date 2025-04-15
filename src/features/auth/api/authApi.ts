@@ -1,7 +1,7 @@
 /** @format */
 
-// src/features/auth/api/authApi.ts
 import axios from "@/shared/api/axiosInstance";
+import Cookies from "js-cookie";
 
 export const authApi = {
   login: async (data: {
@@ -33,13 +33,18 @@ export const authApi = {
   },
 
   logout: async () => {
-    const res = await axios.post(
+    // Сначала — запрос на backend
+    await axios.post(
       "/auth/logout",
       {},
       {
         withCredentials: true,
       },
     );
-    return res.data;
+
+    // Потом — удаление cookies на клиенте (если нужно)
+    Cookies.remove("SESSION_NAME"); // Укажи точное имя cookie (например, "connect.sid")
+    Cookies.remove("token"); // если есть токен
+    window.location.reload();
   },
 };

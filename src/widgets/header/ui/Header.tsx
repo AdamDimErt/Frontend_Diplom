@@ -20,7 +20,9 @@ const Header = () => {
       <ul
         className={`${styles.header__list} ${instrumentSans.className}`}
       >
-        <li>Shop</li>
+        <li>
+          <Link href={"/"}>Shop</Link>{" "}
+        </li>
         <li>About</li>
       </ul>
       <h3

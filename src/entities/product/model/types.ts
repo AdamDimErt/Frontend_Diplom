@@ -1,6 +1,7 @@
 /** @format */
 
 export type Product = {
+  priceTon: any;
   id: string;
   images: string[];
   priceTenge: number;
@@ -11,6 +12,9 @@ export type Product = {
     description: string;
   }[];
   specifications?: {
+    translations: any;
+    value: string;
+    key: string;
     id: string;
   }[];
 };

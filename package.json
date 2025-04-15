@@ -27,6 +27,7 @@
     "@eslint/eslintrc": "^3",
     "@svgr/webpack": "^8.1.0",
     "@tanstack/react-query-devtools": "^5.74.0",
+    "@types/js-cookie": "^3.0.6",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,0 +1,42 @@
+/** @format */
+
+.actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 1rem;
+}
+
+.cart,
+.buy,
+.confirmBuy {
+  padding: 0.6rem 1.2rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.cart {
+  background-color: #2b95f9;
+  color: white;
+  border: none;
+}
+
+.buy {
+  background-color: white;
+  color: #2b95f9;
+  border: 1px solid #2b95f9;
+}
+
+.addressWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.input {
+  padding: 0.6rem 1rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+}

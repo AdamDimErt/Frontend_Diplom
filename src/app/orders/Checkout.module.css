@@ -1,85 +1,126 @@
 /** @format */
 
 .checkout {
-  max-width: 720px;
-  margin: 40px auto;
-  background: #fff;
-  padding: 24px;
-  border-radius: 10px;
-  font-family: "Inter", sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 32px 16px;
+  background-color: white;
+}
+
+.checkout h2 {
+  font-size: 28px;
+  font-weight: bold;
+  margin-bottom: 16px;
 }
 
 .item {
   display: flex;
   gap: 16px;
-  align-items: center;
+  margin-bottom: 24px;
   border-bottom: 1px solid #eee;
-  padding: 16px 0;
+  padding-bottom: 24px;
 }
 
 .image {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 8px;
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  border-radius: 10px;
+  background-color: #f3f3f3;
 }
 
 .info {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .name {
-  font-weight: bold;
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 18px;
+  margin-bottom: 8px;
 }
 
 .priceBlock {
   display: flex;
-  gap: 12px;
-  font-size: 14px;
-  margin: 4px 0;
+  gap: 16px;
+  font-weight: bold;
+  font-size: 16px;
 }
 
 .details {
+  font-size: 14px;
+  color: #666;
+  margin-top: 8px;
   display: flex;
-  gap: 12px;
-  font-size: 12px;
-  color: #888;
+  gap: 16px;
 }
 
 .qty {
   display: flex;
-  gap: 8px;
   align-items: center;
+  gap: 8px;
 }
 
 .qty button {
-  background: #f0f0f0;
+  background: #f1f1f1;
   border: none;
-  width: 24px;
-  height: 24px;
+  font-size: 18px;
+  padding: 4px 10px;
   border-radius: 4px;
-  font-size: 16px;
   cursor: pointer;
 }
 
 .trash {
-  font-size: 18px;
-  color: red;
   cursor: pointer;
+  padding-left: 12px;
+  display: flex;
+  align-items: center;
+}
+.trash img {
+  width: 18px;
+  height: 18px;
 }
 
 .totalRow {
   display: flex;
   justify-content: space-between;
-  margin-top: 20px;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  padding: 16px 0;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
 }
 
 .removeAll {
-  text-align: right;
-  margin-top: 10px;
   color: red;
-  cursor: pointer;
   font-size: 14px;
+  text-align: right;
+  margin: 12px 0;
+  cursor: pointer;
+}
+
+#ton-connect {
+  margin: 24px 0 12px;
+}
+
+.checkoutButton {
+  background-color: #2b95f9;
+  border: none;
+  color: white;
+  font-weight: 500;
+  margin-top: 50px;
+  font-size: 16px;
+  padding: 10px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.checkoutButton:hover {
+  background-color: #1874cd;
+}
+.ton {
+  width: 13px;
+  height: 13px;
 }

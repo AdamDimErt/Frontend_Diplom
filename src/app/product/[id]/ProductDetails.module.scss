@@ -1,0 +1,71 @@
+/** @format */
+
+.container {
+  display: flex;
+  gap: 2rem;
+  padding: 2rem;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.gallery {
+  flex: 1;
+}
+
+.details {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.details h1 {
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.color {
+  font-size: 14px;
+  margin-bottom: 8px;
+}
+
+.spec {
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+.actions {
+  display: flex;
+  gap: 12px;
+}
+
+.cart {
+  padding: 0.6rem 1.2rem;
+  background: #2b95f9;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.buy {
+  padding: 0.6rem 1.2rem;
+  border: 1px solid #2b95f9;
+  background: white;
+  color: #2b95f9;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.specTable {
+  width: 100%;
+  font-size: 14px;
+  margin-top: 1rem;
+  border-spacing: 0 6px;
+}
+
+.specTable td {
+  padding: 6px 12px;
+  background-color: #f6f6f6;
+  border-radius: 6px;
+}
