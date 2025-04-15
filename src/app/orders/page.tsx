@@ -16,7 +16,7 @@ import {
   markOrderPaid,
 } from "@/entities/order/api/orderApi";
 
-import styles from "@/app/checkout/Checkout.module.css";
+import styles from "./Checkout.module.css";
 import { useEffect, useMemo, useRef } from "react";
 import { TonConnectUI } from "@tonconnect/ui";
 
@@ -34,13 +34,23 @@ export default function CheckoutPage() {
   const tonConnectRef = useRef<TonConnectUI | null>(null);
 
   useEffect(() => {
-    if (!document.querySelector("tc-root")) {
-      tonConnectRef.current = new TonConnectUI({
-        manifestUrl:
-          "https://frontend-diplom-sss5.vercel.app/tonconnect-manifest.json",
-        buttonRootId: "ton-connect",
-      });
-    }
+    const init = () => {
+      const rootExists =
+        document.getElementById("ton-connect");
+
+      if (rootExists && !tonConnectRef.current) {
+        tonConnectRef.current = new TonConnectUI({
+          manifestUrl:
+            "https://frontend-diplom-sss5.vercel.app/tonconnect-manifest.json",
+          buttonRootId: "ton-connect",
+        });
+      } else {
+        // Повторим через 100ms, если элемент ещё не появился
+        setTimeout(init, 100);
+      }
+    };
+
+    init();
   }, []);
 
   const increase = useMutation({
