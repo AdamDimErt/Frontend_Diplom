@@ -10,6 +10,9 @@
     font-size: clamp(16px, 1.56vw, 30px);
   }
   &__list {
+    z-index: 99999;
+    border-radius: 5px;
+    background: #fff;
     position: absolute;
     list-style: none;
     font-size: clamp(12px, 1.56vw, 20px);

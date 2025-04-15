@@ -2,16 +2,38 @@
 
 "use client";
 
-import { Product } from "../../product/model/types";
 import Link from "next/link";
 import styles from "./Product.module.scss";
 import { Price } from "@/shared/ui/Price/Price";
+import { Product } from "../../product/model/types";
+import {
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from "@tanstack/react-query";
+import { authApi } from "@/features/auth/api/authApi";
+import { addToCart } from "@/entities/cart/api/cartApi";
 
 type Props = {
   product: Product;
 };
 
 export const ProductCard = ({ product }: Props) => {
+  const queryClient = useQueryClient();
+
+  const { data: user } = useQuery({
+    queryKey: ["me"],
+    queryFn: authApi.me,
+  });
+
+  const mutation = useMutation({
+    mutationFn: () =>
+      addToCart({ userId: user.id, productId: product.id }),
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["cart"] });
+    },
+  });
+
   return (
     <div className={styles.card}>
       <Link
@@ -31,8 +53,13 @@ export const ProductCard = ({ product }: Props) => {
         </div>
       </Link>
 
-      {/* Вне Link */}
-      <button className={styles.addButton}>+</button>
+      <button
+        className={styles.addButton}
+        onClick={() => mutation.mutate()}
+        disabled={!user}
+      >
+        +
+      </button>
     </div>
   );
 };

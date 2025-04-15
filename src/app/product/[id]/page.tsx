@@ -19,6 +19,8 @@ export default async function ProductDetailsPage({
     (t) => t.language === "RU",
   );
 
+  console.log(product);
+
   const mainImage =
     product.images?.[0] &&
     (product.images[0].startsWith("http") ||

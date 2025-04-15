@@ -1,0 +1,85 @@
+/** @format */
+
+.checkout {
+  max-width: 720px;
+  margin: 40px auto;
+  background: #fff;
+  padding: 24px;
+  border-radius: 10px;
+  font-family: "Inter", sans-serif;
+}
+
+.item {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  border-bottom: 1px solid #eee;
+  padding: 16px 0;
+}
+
+.image {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.info {
+  flex: 1;
+}
+
+.name {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.priceBlock {
+  display: flex;
+  gap: 12px;
+  font-size: 14px;
+  margin: 4px 0;
+}
+
+.details {
+  display: flex;
+  gap: 12px;
+  font-size: 12px;
+  color: #888;
+}
+
+.qty {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.qty button {
+  background: #f0f0f0;
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+}
+
+.trash {
+  font-size: 18px;
+  color: red;
+  cursor: pointer;
+}
+
+.totalRow {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  font-size: 16px;
+}
+
+.removeAll {
+  text-align: right;
+  margin-top: 10px;
+  color: red;
+  cursor: pointer;
+  font-size: 14px;
+}

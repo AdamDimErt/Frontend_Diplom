@@ -8,6 +8,7 @@ import Header from "@/widgets/header/ui/Header";
 import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
 import { Providers } from "./providers";
+import { Footer } from "@/widgets/footer/ui/Footer";
 
 export const metadata: Metadata = {
   title: "shop",
@@ -29,6 +30,7 @@ export default async function RootLayout({
           <Providers>
             <Header />
             {children}
+            <Footer />
           </Providers>
         </NextIntlClientProvider>
       </body>

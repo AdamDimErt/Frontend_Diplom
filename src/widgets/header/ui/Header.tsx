@@ -4,13 +4,14 @@
 import React from "react";
 import styles from "./Header.module.scss";
 import LanguageSwitcher from "@/features/languageSwitcher/ui/LanguageSwitcher";
-import Cart from "@/features/cart/ui/Cart";
+
 import { Profile } from "@/features/profile/ui/Profile";
 
 import { raleway } from "@/shared/fonts/raleway";
 import { instrumentSans } from "@/shared/fonts/instrumentSans";
 import { useAuthUser } from "@/features/auth/model/useAuthUser";
 import Link from "next/link";
+import { CartButton } from "@/features/cartButton/ui/CartButton";
 
 const Header = () => {
   const { user, isLoading } = useAuthUser();
@@ -29,12 +30,12 @@ const Header = () => {
       </h3>
       <div className={styles.header__right_menu}>
         <LanguageSwitcher />
-        <Cart />
+        <CartButton />
         <nav>
           {isLoading ? (
             <span>Загрузка...</span>
           ) : user ? (
-            <p>авторизован</p>
+            <Profile />
           ) : (
             <Link
               href='/login'

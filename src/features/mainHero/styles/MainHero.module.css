@@ -1,0 +1,109 @@
+/** @format */
+
+.wrapper {
+  background: white; /* белые поля по бокам */
+  padding-left: 60px; /* левая полоса */
+  padding-right: 60px; /* правая полоса */
+  box-sizing: border-box;
+  margin-bottom: 100px;
+
+  overflow: hidden; /* 🔒 Ограничивает всё внутри */
+}
+
+.hero {
+  height: 100vh;
+  border-radius: 30px;
+  background-image: url("/hero-bg.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+}
+
+.overlay {
+  position: relative;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  z-index: 2;
+}
+
+.content {
+  max-width: 800px;
+  z-index: 3;
+  margin-left: 60px;
+}
+.content p {
+  max-width: 350px;
+}
+
+.content h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1rem;
+}
+
+.content p {
+  font-size: 1.2rem;
+  margin-bottom: 2rem;
+}
+
+.cta {
+  background-color: #007bff;
+  color: white;
+  padding: 0.8rem 1.6rem;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.cta:hover {
+  background-color: #0056b3;
+}
+
+.imageWrapper {
+  position: relative;
+  width: fit-content;
+  height: auto;
+  display: flex;
+  align-items: flex-end; /* ✅ прижимаем руку вниз */
+  justify-content: center;
+  height: 100vh !important;
+}
+
+.hand {
+  width: 700px;
+  height: auto;
+  object-fit: contain;
+  z-index: 1;
+}
+
+.ton {
+  position: absolute;
+
+  top: 100px;
+  left: 30%;
+  transform: translateX(-50%); /* Центр по горизонтали */
+
+  width: 200px;
+  height: auto;
+  animation: float 3s ease-in-out infinite;
+  z-index: 2;
+}
+
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-15px);
+  }
+}

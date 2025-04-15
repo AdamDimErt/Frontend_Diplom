@@ -41,7 +41,7 @@ export default function LanguageSwitcherSelect() {
       >
         {locale}
         <svg
-          width='25'
+          width='15'
           height='15'
           viewBox='0 0 25 15'
           fill='none'
@@ -71,11 +71,6 @@ export default function LanguageSwitcherSelect() {
               >
                 {item}
                 {/* переделать */}
-                {item === locale && (
-                  <span style={{ color: "green" }}>
-                    (current)
-                  </span>
-                )}
               </button>
             </li>
           ))}

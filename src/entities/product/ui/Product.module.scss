@@ -5,9 +5,11 @@
   background: white;
   border-radius: 12px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-
   width: 200px;
   transition: transform 0.2s ease;
+
+  overflow: visible; /* ✅ разрешаем выход кнопки */
+  margin-bottom: 60px; /* ✅ запас снизу для кнопки */
 }
 
 .card:hover {
@@ -21,16 +23,17 @@
 
 .image {
   width: 100%;
-  height: auto;
-  border-radius: 8px;
-  object-fit: contain;
-  margin-bottom: 12px;
+  height: 250px; /* ✅ фиксированная высота */
+  object-fit: cover; /* или 'contain' — зависит от твоего дизайна */
+  border-radius: 8px 8px 0 0;
+  display: block;
 }
 
 .info {
   display: flex;
   flex-direction: column;
   gap: 4px;
+  padding: 0 12px;
 }
 
 .title {
@@ -48,20 +51,21 @@
 
 .addButton {
   position: absolute;
-  bottom: 12px;
-  right: 12px;
-  width: 36px;
-  height: 36px;
+  bottom: -12px;
+  right: -12px;
+  width: 48px;
+  height: 48px;
   border-radius: 50%;
   background-color: #2b95f9;
   color: white;
-  font-size: 24px;
+  font-size: 28px;
   border: none;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 99;
+  z-index: 10;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
 }
 
 .addButton:hover {

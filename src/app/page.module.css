@@ -4,10 +4,12 @@
 
 .catalogGrid {
   display: flex;
+
   gap: 30px;
 }
 
 .catalogGrid__products {
   display: flex;
+  flex-wrap: wrap;
   gap: 40px;
 }
