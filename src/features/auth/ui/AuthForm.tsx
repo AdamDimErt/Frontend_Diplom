@@ -1,144 +1,136 @@
 /** @format */
 
+// src/features/auth/ui/AuthForm.tsx
+/** @format */
+
 "use client";
 
-import React, { useState } from "react";
+import { useEffect, useState } from "react";
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useTranslations } from "next-intl";
+import { toast } from "react-toastify";
+
+import { useAuthUser } from "../model/useAuthUser";
+import { useAuthActions } from "../model/useAuthActions";
+
+import { AuthTabs } from "./AuthTabs";
+import { AuthFields } from "./AuthFields";
+import { AuthError } from "./AuthError";
+
 import styles from "./AuthForm.module.css";
-import { useAuth } from "../model/useAuth";
+import { authSchema, AuthFormValues } from "../lib/schema";
 
-export const AuthForm = () => {
-  const { login, register, user } = useAuth();
+const AuthForm = () => {
+  const t = useTranslations("auth");
+  const { user } = useAuthUser();
+  const { login, register } = useAuthActions();
 
-  const [activeTab, setActiveTab] = useState<
-    "login" | "register"
-  >("login");
-
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] =
-    useState("");
-  const [name, setName] = useState(""); // 👈 добавили имя
-
+  const [mode, setMode] = useState<"login" | "register">(
+    "login",
+  );
   const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+  const {
+    register: formRegister,
+    handleSubmit,
+    reset,
+    watch,
+    formState: { errors },
+  } = useForm<AuthFormValues>({
+    resolver: zodResolver(authSchema),
+  });
+
+  useEffect(() => {
+    const sub = watch(() => setError(null));
+    return () => sub.unsubscribe();
+  }, [watch]);
+
+  const onSubmit = (data: AuthFormValues) => {
     setError(null);
 
-    if (activeTab === "register") {
-      if (!name.trim()) {
-        return setError("Имя обязательно для заполнения.");
-      }
-      if (password !== confirmPassword) {
-        return setError("Пароли не совпадают.");
-      }
-
-      register.mutate(
-        { email, password, name },
-        {
-          onError: (err: any) => {
-            setError(
-              err?.response?.data?.message?.[0] ||
-                "Ошибка при регистрации",
-            );
-          },
+    if (mode === "register") {
+      const payload = {
+        email: data.email,
+        password: data.password,
+        name: data.name?.trim() || "",
+      };
+      register.mutate(payload, {
+        onSuccess: () =>
+          toast.success(t("registerSuccess")),
+        onError: (err: any) => {
+          const msg =
+            err?.response?.data?.message?.[0] ||
+            t("errorGeneric");
+          setError(msg);
+          toast.error(t("errorGeneric"));
         },
-      );
+      });
     } else {
-      login.mutate(
-        { email, password },
-        {
-          onError: (err: any) => {
-            setError(
-              err?.response?.data?.message ||
-                "Ошибка при входе",
-            );
-          },
+      console.log("hi login");
+
+      const payload = {
+        email: data.email,
+        password: data.password,
+      };
+
+      console.log("▶ login payload:", payload);
+      login.mutate(payload, {
+        onSuccess: () => toast.success(t("loginSuccess")),
+        onError: (err: any) => {
+          const msg =
+            err?.response?.data?.message ||
+            t("errorGeneric");
+          setError(msg);
+          toast.error(t("errorGeneric"));
         },
-      );
+      });
     }
   };
 
   if (user) {
     return (
       <div className={styles.loggedIn}>
-        Вы вошли как {user.email}
+        {t("welcome")} <b>{user.email}</b>
       </div>
     );
   }
 
+  const isLoading = login.isPending || register.isPending;
+
   return (
     <div className={styles.container}>
-      <div className={styles.tabs}>
-        <button
-          className={`${styles.tab} ${
-            activeTab === "login" ? styles.active : ""
-          }`}
-          onClick={() => setActiveTab("login")}
-        >
-          Вход
-        </button>
-        <button
-          className={`${styles.tab} ${
-            activeTab === "register" ? styles.active : ""
-          }`}
-          onClick={() => setActiveTab("register")}
-        >
-          Регистрация
-        </button>
-      </div>
+      <AuthTabs
+        mode={mode}
+        onChange={setMode}
+        onReset={reset}
+      />
+      <AuthError message={error} />
 
-      {error && <div className={styles.error}>{error}</div>}
-
-      <form onSubmit={handleSubmit} className={styles.form}>
-        {activeTab === "register" && (
-          <input
-            type='text'
-            placeholder='Имя'
-            className={styles.input}
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            required
-          />
-        )}
-
-        <input
-          type='email'
-          placeholder='Email'
-          className={styles.input}
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
-          required
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={styles.form}
+      >
+        <AuthFields
+          formRegister={formRegister}
+          mode={mode}
+          t={t}
+          errors={errors}
         />
-
-        <input
-          type='password'
-          placeholder='Пароль'
-          className={styles.input}
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          required
-        />
-
-        {activeTab === "register" && (
-          <input
-            type='password'
-            placeholder='Подтвердите пароль'
-            className={styles.input}
-            value={confirmPassword}
-            onChange={(e) =>
-              setConfirmPassword(e.target.value)
-            }
-            required
-          />
-        )}
-
-        <button type='submit' className={styles.button}>
-          {activeTab === "register"
-            ? "Зарегистрироваться"
-            : "Войти"}
+        <button
+          type='submit'
+          className={styles.button}
+          disabled={isLoading}
+        >
+          {isLoading
+            ? t("loading")
+            : mode === "register"
+            ? t("register")
+            : t("login")}
         </button>
       </form>
     </div>
   );
 };
+
+export default AuthForm;

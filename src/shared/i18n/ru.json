@@ -1,5 +1,79 @@
 {
-  "Test": {
-    "greeting": "привет"
+  "meta": {
+    "title": "Teleg Store",
+    "description": "Магазин с авторизацией и оплатой через TON"
+  },
+
+  "header": {
+    "shop": "Магазин",
+    "about": "О нас",
+    "loading": "Загрузка...",
+    "signIn": "Войти"
+  },
+  "product": {
+    "title": "Товар",
+    "metaDescription": "Страница товара с подробными характеристиками",
+    "specs": "Характеристики",
+    "techTitle": "Технические характеристики",
+    "noData": "—"
+  },
+  "footer": {
+    "sections": {
+      "shop": "Магазин",
+      "about": "О нас",
+      "contacts": "Контакты"
+    },
+    "items": {
+      "speakers": "Колонки",
+      "sensors": "Датчики",
+      "lamps": "Лампы",
+      "cameras": "Камеры",
+      "routers": "Роутеры",
+      "story": "Наша история",
+      "mission": "Миссия и видение",
+      "team": "Команда",
+      "partners": "Партнёрства",
+      "phone1": "87022385580",
+      "phone2": "87019999999",
+      "phone3": "24-58-89"
+    },
+    "policy": {
+      "privacy": "Политика конфиденциальности",
+      "terms": "Условия обслуживания",
+      "cookies": "Настройки cookie",
+      "copyright": "© 2025 Компания. Все права защищены."
+    }
+  },
+  "auth": {
+    "login": "Войти",
+    "register": "Зарегистрироваться",
+    "email": "Email",
+    "password": "Пароль",
+    "confirmPassword": "Подтвердите пароль",
+    "name": "Имя",
+    "errorRequired": "Обязательное поле",
+    "errorMismatch": "Пароли не совпадают",
+    "errorGeneric": "Ошибка авторизации",
+    "welcome": "Вы вошли как",
+    "loginSuccess": "Вы успешно вошли",
+    "registerSuccess": "Вы успешно зарегистрированы",
+    "loading": "Загрузка..."
+  },
+  "checkout": {
+    "title": "Оформление заказа",
+    "contactLabel": "Контактный телефон",
+    "addressLabel": "Адрес доставки",
+    "createButton": "Создать заказ",
+    "payButton": "Оплатить в TON",
+    "loadingCreate": "Создаём заказ...",
+    "loadingPay": "Оплата…",
+    "successMessage": "Заказ принятый! Перейдите в личный кабинет для отслеживания."
+  },
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "address": "Адрес доставки",
+    "buy": "Купить",
+    "loading": "Оформление..."
   }
 }

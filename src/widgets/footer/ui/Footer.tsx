@@ -1,5 +1,7 @@
 /** @format */
 
+"use client";
+
 import styles from "./Footer.module.css";
 import {
   FaFacebookF,
@@ -7,37 +9,40 @@ import {
   FaTelegramPlane,
   FaWhatsapp,
 } from "react-icons/fa";
+import { useTranslations } from "next-intl";
 
 export const Footer = () => {
+  const t = useTranslations("footer");
+
   return (
     <footer className={styles.footer}>
       <div className={styles.top}>
         <div className={styles.links}>
           <div>
-            <h4>Shop</h4>
+            <h4>{t("sections.shop")}</h4>
             <ul>
-              <li>Speakers</li>
-              <li>Sensors</li>
-              <li>Lamps</li>
-              <li>Cameras</li>
-              <li>Routers</li>
+              <li>{t("items.speakers")}</li>
+              <li>{t("items.sensors")}</li>
+              <li>{t("items.lamps")}</li>
+              <li>{t("items.cameras")}</li>
+              <li>{t("items.routers")}</li>
             </ul>
           </div>
           <div>
-            <h4>About Us</h4>
+            <h4>{t("sections.about")}</h4>
             <ul>
-              <li>Our Story</li>
-              <li>Mission & Vision</li>
-              <li>Our Team</li>
-              <li>Partnerships</li>
+              <li>{t("items.story")}</li>
+              <li>{t("items.mission")}</li>
+              <li>{t("items.team")}</li>
+              <li>{t("items.partners")}</li>
             </ul>
           </div>
           <div>
-            <h4>Contacts</h4>
+            <h4>{t("sections.contacts")}</h4>
             <ul>
-              <li>87022385580</li>
-              <li>87019999999</li>
-              <li>24-58-89</li>
+              <li>{t("items.phone1")}</li>
+              <li>{t("items.phone2")}</li>
+              <li>{t("items.phone3")}</li>
             </ul>
           </div>
         </div>
@@ -55,11 +60,11 @@ export const Footer = () => {
 
       <div className={styles.bottom}>
         <div className={styles.policy}>
-          <a href='#'>Privacy Policy</a>
-          <a href='#'>Terms of Service</a>
-          <a href='#'>Cookie Settings</a>
+          <a href='#'>{t("policy.privacy")}</a>
+          <a href='#'>{t("policy.terms")}</a>
+          <a href='#'>{t("policy.cookies")}</a>
         </div>
-        <p>© 2025 Company. All rights reserved.</p>
+        <p>{t("policy.copyright")}</p>
       </div>
     </footer>
   );

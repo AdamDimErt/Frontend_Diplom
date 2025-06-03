@@ -1,36 +1,41 @@
 /** @format */
 
-// src/app/layout.tsx
-import type { Metadata } from "next";
-import "./globals.css";
-import "@/shared/styles/variables.css";
-import Header from "@/widgets/header/ui/Header";
-import { NextIntlClientProvider } from "next-intl";
 import { getLocale, getMessages } from "next-intl/server";
+import { NextIntlClientProvider } from "next-intl";
+import { PropsWithChildren } from "react";
 import { Providers } from "./providers";
-import { Footer } from "@/widgets/footer/ui/Footer";
+import { AppShell } from "./ui/AppShell";
+import { getDictionary } from "@/shared/i18n/dictionary";
+import type { Metadata } from "next";
 
-export const metadata: Metadata = {
-  title: "shop",
-  description: "shop",
-};
+import "@/shared/styles/globals.css";
+import "@/shared/styles/variables.css";
+
+export async function generateMetadata(): Promise<Metadata> {
+  const locale = await getLocale();
+  const dict = await getDictionary(locale);
+
+  return {
+    title: dict.meta.title,
+    description: dict.meta.description,
+  };
+}
 
 export default async function RootLayout({
   children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+}: PropsWithChildren) {
   const locale = await getLocale();
   const messages = await getMessages();
 
   return (
-    <html lang={locale}>
+    <html
+      lang={locale}
+      dir={locale === "ar" ? "rtl" : "ltr"}
+    >
       <body>
         <NextIntlClientProvider messages={messages}>
           <Providers>
-            <Header />
-            {children}
-            <Footer />
+            <AppShell>{children}</AppShell>
           </Providers>
         </NextIntlClientProvider>
       </body>

@@ -1,5 +1,68 @@
 {
-  "Test": {
-    "greeting": "Сәлем Әлем!"
+  "meta": {
+    "title": "Teleg Store",
+    "description": "TON арқылы төлемі бар дүкен"
+  },
+  "header": {
+    "shop": "Дүкен",
+    "about": "Біз туралы",
+    "loading": "Жүктелуде...",
+    "signIn": "Кіру"
+  },
+  "product": {
+    "title": "Өнім",
+    "metaDescription": "Өнімнің сипаттамасы бар толық бет",
+    "specs": "Сипаттамалар",
+    "techTitle": "Техникалық сипаттамалар",
+    "noData": "—"
+  },
+  "footer": {
+    "sections": {
+      "shop": "Дүкен",
+      "about": "Біз туралы",
+      "contacts": "Байланыс"
+    },
+    "items": {
+      "speakers": "Дыбыс зорайтқыштар",
+      "sensors": "Сенсорлар",
+      "lamps": "Шамдар",
+      "cameras": "Камералар",
+      "routers": "Маршрутизаторлар",
+      "story": "Біздің тарихымыз",
+      "mission": "Миссия және көрініс",
+      "team": "Команда",
+      "partners": "Серіктестер",
+      "phone1": "87022385580",
+      "phone2": "87019999999",
+      "phone3": "24-58-89"
+    },
+    "policy": {
+      "privacy": "Құпиялылық саясаты",
+      "terms": "Қызмет көрсету шарттары",
+      "cookies": "Cookie параметрлері",
+      "copyright": "© 2025 Компания. Барлық құқықтар қорғалған."
+    }
+  },
+  "auth": {
+    "login": "Кіру",
+    "register": "Тіркелу",
+    "email": "Email",
+    "password": "Құпия сөз",
+    "confirmPassword": "Құпия сөзді растау",
+    "name": "Аты",
+    "errorRequired": "Міндетті өріс",
+    "errorMismatch": "Құпия сөздер сәйкес емес",
+    "errorGeneric": "Аутентификация қатесі",
+    "welcome": "Сіз кірдіңіз:",
+    "loginSuccess": "Сәтті кірдіңіз",
+    "registerSuccess": "Сәтті тіркелдіңіз",
+    "loading": "Жүктелуде..."
+  },
+  "cart": {
+    "title": "Себет",
+    "empty": "Себет бос",
+    "address": "Жеткізу мекенжайы",
+    "buy": "Сатып алу",
+    "loading": "Төлем өңделуде..."
   }
 }

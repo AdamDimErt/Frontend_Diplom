@@ -2,6 +2,10 @@
 
 import axios from "@/shared/api/axiosInstance";
 import Cookies from "js-cookie";
+import {
+  AUTH_COOKIE_NAME,
+  AUTH_TOKEN_NAME,
+} from "@/shared/config/auth";
 
 export const authApi = {
   login: async (data: {
@@ -33,18 +37,17 @@ export const authApi = {
   },
 
   logout: async () => {
-    // Сначала — запрос на backend
-    await axios.post(
-      "/auth/logout",
-      {},
-      {
-        withCredentials: true,
-      },
-    );
-
-    // Потом — удаление cookies на клиенте (если нужно)
-    Cookies.remove("SESSION_NAME"); // Укажи точное имя cookie (например, "connect.sid")
-    Cookies.remove("token"); // если есть токен
-    window.location.reload();
+    try {
+      await axios.post(
+        "/auth/logout",
+        {},
+        {
+          withCredentials: true,
+        },
+      );
+    } finally {
+      Cookies.remove(AUTH_COOKIE_NAME);
+      Cookies.remove(AUTH_TOKEN_NAME);
+    }
   },
 };

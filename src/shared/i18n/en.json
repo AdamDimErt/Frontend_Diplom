@@ -1,5 +1,78 @@
 {
-  "Test": {
-    "greeting": "Hello, this is a test!"
+  "meta": {
+    "title": "Teleg Store",
+    "description": "A store with authorization and TON payment"
+  },
+  "header": {
+    "shop": "Shop",
+    "about": "About",
+    "loading": "Loading...",
+    "signIn": "Sign In"
+  },
+  "product": {
+    "title": "Product",
+    "metaDescription": "Detailed product page with specifications",
+    "specs": "Specifications",
+    "techTitle": "Technical details",
+    "noData": "—"
+  },
+  "footer": {
+    "sections": {
+      "shop": "Shop",
+      "about": "About Us",
+      "contacts": "Contacts"
+    },
+    "items": {
+      "speakers": "Speakers",
+      "sensors": "Sensors",
+      "lamps": "Lamps",
+      "cameras": "Cameras",
+      "routers": "Routers",
+      "story": "Our Story",
+      "mission": "Mission & Vision",
+      "team": "Our Team",
+      "partners": "Partnerships",
+      "phone1": "87022385580",
+      "phone2": "87019999999",
+      "phone3": "24-58-89"
+    },
+    "policy": {
+      "privacy": "Privacy Policy",
+      "terms": "Terms of Service",
+      "cookies": "Cookie Settings",
+      "copyright": "© 2025 Company. All rights reserved."
+    }
+  },
+  "checkout": {
+    "title": "Checkout",
+    "contactLabel": "Contact phone",
+    "addressLabel": "Delivery address",
+    "createButton": "Create order",
+    "payButton": "Pay in TON",
+    "loadingCreate": "Creating order...",
+    "loadingPay": "Paying…",
+    "successMessage": "Order accepted! Please go to your account for tracking."
+  },
+  "auth": {
+    "login": "Login",
+    "register": "Register",
+    "email": "Email",
+    "password": "Password",
+    "confirmPassword": "Confirm password",
+    "name": "Name",
+    "errorRequired": "This field is required",
+    "errorMismatch": "Passwords do not match",
+    "errorGeneric": "Authentication error",
+    "welcome": "You are logged in as",
+    "loginSuccess": "Successfully logged in",
+    "registerSuccess": "Successfully registered",
+    "loading": "Loading..."
+  },
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "address": "Delivery address",
+    "buy": "Buy",
+    "loading": "Processing..."
   }
 }
