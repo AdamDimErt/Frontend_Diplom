@@ -13,8 +13,6 @@ import {
 } from "@stripe/react-stripe-js";
 import { useTranslations } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
-import axios from "axios";
-
 import { getMyOrders } from "@/entities/order/api/orderApi";
 import { useCheckout } from "@/features/checkout/model/useCheckout";
 import { useCheckoutMutations } from "@/features/checkout/model/useCheckoutMutations";
@@ -23,17 +21,14 @@ import { useTonPayment } from "@/features/checkout/lib/useTonPayment";
 
 import styles from "./Payment.module.css";
 
+// 🔑 Ваш тестовый publishable-key Stripe
 const stripePromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!,
+  "pk_test_51RDtTOIjJP5SAFomTfJ7ByH0acGAMBhjNJMCXsDb17q9fGpmdczHaB5ITY9futn4MvUuzSftos7c9r8V2tMxx3mH00jtfrwbvq",
 );
 
-async function updateOrderStatus(
-  id: string,
-  status: "paid" | "cancelled",
-) {
-  await axios.post(`/api/order/${id}/status`, { status });
-}
-
+//
+// ─── Форма Stripe ──────────────────────────────────────────────────────────────
+//
 function StripeCheckoutForm({
   clientSecret,
 }: {
@@ -47,7 +42,7 @@ function StripeCheckoutForm({
     queryFn: getMyOrders,
   });
   const latestOrder = useMemo(() => data?.[0], [data]);
-  const { clear } = useCheckoutMutations(latestOrder?.id!);
+  const { clear } = useCheckoutMutations(latestOrder?.id);
 
   const totalAmount = latestOrder
     ? latestOrder.items.reduce(
@@ -59,7 +54,7 @@ function StripeCheckoutForm({
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!stripe || !elements || !latestOrder) return;
+    if (!stripe || !elements) return;
 
     const res = await stripe.confirmPayment({
       elements,
@@ -68,22 +63,9 @@ function StripeCheckoutForm({
 
     if (res.error) {
       alert(res.error.message);
-      // обновляем статус на cancelled
-      await updateOrderStatus(latestOrder.id, "cancelled");
     } else {
-      // @ts-ignore
-      const pi = res.paymentIntent;
-      if (pi?.status === "succeeded") {
-        alert(t("paid"));
-        await updateOrderStatus(latestOrder.id, "paid");
-        clear.mutate();
-      } else {
-        alert(t("paymentFailed"));
-        await updateOrderStatus(
-          latestOrder.id,
-          "cancelled",
-        );
-      }
+      alert(t("paid"));
+      clear.mutate();
     }
   };
 
@@ -107,6 +89,9 @@ function StripeCheckoutForm({
   );
 }
 
+//
+// ─── Оплата через Telegram (TON Connect) ───────────────────────────────────────
+//
 function TelegramCheckout() {
   const t = useTranslations("checkout");
   const { data } = useQuery({
@@ -114,34 +99,27 @@ function TelegramCheckout() {
     queryFn: getMyOrders,
   });
   const latestOrder = useMemo(() => data?.[0], [data]);
-  const { clear } = useCheckoutMutations(latestOrder?.id!);
+
+  // Хуки из вашего кода Telegram-оплаты
   const tonRef = useTonConnect();
   const payTon = useTonPayment(
     tonRef,
     latestOrder?.items ?? [],
-    latestOrder?.id!,
+    latestOrder?.id,
   );
-
-  const handleTony = async () => {
-    try {
-      await payTon();
-      await updateOrderStatus(latestOrder!.id, "paid");
-      clear.mutate();
-    } catch {
-      alert(t("paymentFailed"));
-      await updateOrderStatus(latestOrder!.id, "cancelled");
-    }
-  };
 
   return (
     <div className={styles.paymentBox}>
+      {/* 1) контейнер, куда TonConnectUI вставит свою кнопку */}
       <div
         id='ton-connect'
         className={styles.tonConnectRoot}
       />
+
+      {/* 2) фолбэк-кнопка, если Mini-App не успеет загрузиться */}
       <button
         className={styles.payButton}
-        onClick={handleTony}
+        onClick={() => payTon()}
       >
         {t("payWithTelegram")}
       </button>
@@ -149,12 +127,19 @@ function TelegramCheckout() {
   );
 }
 
+//
+// ─── Главный компонент страницы оплаты ────────────────────────────────────────
+//
 export default function PaymentPage() {
   const t = useTranslations("checkout");
   const { paymentMethod } = useCheckout();
-  const [clientSecret, setClientSecret] = useState("");
+
+  // Для Stripe нам нужен clientSecret
+  const [clientSecret, setClientSecret] =
+    useState<string>("");
   const [error, setError] = useState<string | null>(null);
 
+  // Берём сумму заказа
   const { data } = useQuery({
     queryKey: ["orders"],
     queryFn: getMyOrders,
@@ -167,8 +152,10 @@ export default function PaymentPage() {
       0,
     ) ?? 0;
 
+  // Если выбрали Stripe — запрашиваем PaymentIntent
   useEffect(() => {
     if (paymentMethod !== "stripe" || !totalAmount) return;
+
     fetch("/api/create-payment-intent", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -179,12 +166,13 @@ export default function PaymentPage() {
     })
       .then(async (res) => {
         if (!res.ok) throw new Error("Network error");
-        const { clientSecret } = await res.json();
-        setClientSecret(clientSecret);
+        const json = await res.json();
+        setClientSecret(json.clientSecret);
       })
       .catch(() => setError(t("errorInitPayment")));
   }, [paymentMethod, totalAmount, t]);
 
+  // Рендерим только Stripe-ветку
   if (paymentMethod === "stripe") {
     if (error)
       return <div className={styles.loader}>{error}</div>;
@@ -197,7 +185,7 @@ export default function PaymentPage() {
       <div className={styles.container}>
         <h2 className={styles.title}>{t("stepPayment")}</h2>
         <Elements
-          stripe={stripePromise!}
+          stripe={stripePromise}
           options={{ clientSecret }}
         >
           <StripeCheckoutForm clientSecret={clientSecret} />
@@ -206,6 +194,7 @@ export default function PaymentPage() {
     );
   }
 
+  // Иначе — TON/Telegram
   return (
     <div className={styles.container}>
       <h2 className={styles.title}>{t("stepPayment")}</h2>

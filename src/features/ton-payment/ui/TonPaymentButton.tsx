@@ -26,7 +26,7 @@ export const TonPaymentButton = () => {
         {
           address:
             "UQAM7IgIUQqUohQ2YFE75JGdiV7ZtXhcBD_NAzZAnARFZZGm",
-          amount: "20000000",
+          amount: "20",
         },
       ],
     };
