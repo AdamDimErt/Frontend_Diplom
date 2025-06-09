@@ -1,8 +1,5 @@
 {
   "url": "https://adamdim-2911717626d6.herokuapp.com",
   "name": "Smart Home Store",
-  "iconUrl": "https://adamdim-2911717626d6.herokuapp.com/logo.png",
-  "termsOfUseUrl": "https://adamdim-2911717626d6.herokuapp.com/terms",
-  "privacyPolicyUrl": "https://adamdim-2911717626d6.herokuapp.com/privacy",
-  "bridgeUrl": "https://bridge.tonapi.io/bridge"
+  "iconUrl": "https://adamdim-2911717626d6.herokuapp.com/logo.png"
 }

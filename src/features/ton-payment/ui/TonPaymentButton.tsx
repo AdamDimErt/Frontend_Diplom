@@ -1,17 +1,20 @@
 /** @format */
 
+// src/components/TonPaymentButton.tsx
 "use client";
 
-import { useEffect, useRef } from "react";
+import React, { useEffect, useRef } from "react";
 import { TonConnectUI } from "@tonconnect/ui";
 
-export const TonPaymentButton = () => {
-  const tonConnectRef = useRef<TonConnectUI | null>(null);
+export const TonPaymentButton: React.FC = () => {
+  const tonRef = useRef<TonConnectUI | null>(null);
 
   useEffect(() => {
-    // Проверка, не зарегистрирован ли уже tc-root
-    if (!document.querySelector("tc-root")) {
-      tonConnectRef.current = new TonConnectUI({
+    if (
+      !tonRef.current &&
+      !document.querySelector("tc-root")
+    ) {
+      tonRef.current = new TonConnectUI({
         manifestUrl:
           "https://adamdim-2911717626d6.herokuapp.com/tonconnect-manifest.json",
         buttonRootId: "ton-connect",
@@ -20,6 +23,8 @@ export const TonPaymentButton = () => {
   }, []);
 
   const handlePay = async () => {
+    if (!tonRef.current) return;
+
     const tx = {
       validUntil: Math.floor(Date.now() / 1000) + 600,
       messages: [
@@ -31,12 +36,21 @@ export const TonPaymentButton = () => {
       ],
     };
 
-    await tonConnectRef.current?.sendTransaction(tx);
+    try {
+      await tonRef.current.sendTransaction(tx);
+    } catch (error) {
+      console.error(
+        "Ошибка при отправке TON-транзакции:",
+        error,
+      );
+    }
   };
 
   return (
     <div>
+      {/* Контейнер для кнопки TonConnectUI */}
       <div id='ton-connect' />
+      {/* Фолбэк-кнопка */}
       <button onClick={handlePay}>Оплатить TON</button>
     </div>
   );
