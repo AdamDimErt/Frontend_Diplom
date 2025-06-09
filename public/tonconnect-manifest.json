@@ -1,5 +1,8 @@
 {
-  "url": "https://adamdim-2911717626d6.herokuapp.com",
+  "url": "https://frontend-diplom-sss5.vercel.app",
   "name": "Smart Home Store",
-  "iconUrl": "https://adamdim-2911717626d6.herokuapp.com/logo.png"
+  "iconUrl": "https://frontend-diplom-sss5.vercel.app/logo.png",
+  "termsOfUseUrl": "https://frontend-diplom-sss5.vercel.app/terms",
+  "privacyPolicyUrl": "https://frontend-diplom-sss5.vercel.app/privacy",
+  "bridgeUrl": "https://bridge.tonapi.io/bridge"
 }
