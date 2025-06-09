@@ -65,3 +65,21 @@ export const getFilteredProducts = async (
 
   return res.data;
 };
+// src/entities/product/api/productApi.ts
+
+/** Получить товары одной категории */
+// src/entities/product/api/productApi.ts
+export async function getProductsByCategory(
+  categoryId: string,
+): Promise<Product[]> {
+  const { data } = await axiosInstance.get<Product[]>(
+    `/products/category/${categoryId}`,
+  );
+  return data;
+}
+export const deleteProduct = async (
+  id: string,
+): Promise<{ success: boolean }> => {
+  const res = await axiosInstance.delete(`/products/${id}`);
+  return res.data;
+};

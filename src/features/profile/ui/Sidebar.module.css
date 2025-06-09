@@ -1,0 +1,29 @@
+/**
+ * src/app/profile/Sidebar.module.css
+ *
+ * @format
+ */
+
+.sidebar {
+  width: 200px;
+  padding: 1rem;
+  border-right: 1px solid #ddd;
+}
+.menu {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+}
+.menu li {
+  margin: 0.5rem 0;
+}
+.active a {
+  font-weight: bold;
+  color: blue;
+}
+.logout {
+  background: none;
+  border: none;
+  color: red;
+  cursor: pointer;
+}

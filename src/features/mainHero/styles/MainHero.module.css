@@ -1,99 +1,92 @@
-/** @format */
+/**
+ * Обёртка вокруг всего Hero
+ *
+ * @format
+ */
 
 .wrapper {
-  background: white; /* белые поля по бокам */
-  padding-left: 60px; /* левая полоса */
-  padding-right: 60px; /* правая полоса */
+  padding: 0 16px;
   box-sizing: border-box;
-  margin-bottom: 100px;
-
-  overflow: hidden; /* 🔒 Ограничивает всё внутри */
+  margin-bottom: 80px;
 }
 
+/* Фон и общая высота */
 .hero {
+  position: relative;
+  width: 100%;
   height: 100vh;
   border-radius: 30px;
-  background-image: url("/hero-bg.png");
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-
+  background: url("/hero-bg.png") center/cover no-repeat;
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
+  overflow: hidden;
 }
 
+/* Внутренний флекс-контейнер для текста и картинок */
 .overlay {
   position: relative;
-  width: 100%;
-  max-width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
+  max-width: 1200px;
+  padding: 0 16px;
   color: white;
   z-index: 2;
 }
 
+/* Текстовая часть */
 .content {
-  max-width: 800px;
-  z-index: 3;
-  margin-left: 60px;
+  max-width: 500px;
 }
-.content p {
-  max-width: 350px;
-}
-
 .content h1 {
-  font-size: 3.5rem;
+  font-size: 3rem;
   margin-bottom: 1rem;
 }
-
 .content p {
-  font-size: 1.2rem;
-  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  margin-bottom: 1.5rem;
 }
-
 .cta {
-  background-color: #007bff;
-  color: white;
   padding: 0.8rem 1.6rem;
+  background: #007bff;
+  color: white;
   border: none;
   border-radius: 8px;
-  font-size: 1rem;
   cursor: pointer;
+  transition: background 0.2s;
 }
-
 .cta:hover {
-  background-color: #0056b3;
+  background: #0056b3;
 }
 
+/* Блок с изображениями */
 .imageWrapper {
   position: relative;
-  width: fit-content;
-  height: auto;
   display: flex;
-  align-items: flex-end; /* ✅ прижимаем руку вниз */
+  align-items: flex-end;
   justify-content: center;
-  height: 100vh !important;
+  height: 100vh;
+  flex-shrink: 0;
 }
 
+/* SVG-рука */
 .hand {
-  width: 700px;
-  height: auto;
+  width: 600px;
+  max-width: 50vw;
   object-fit: contain;
   z-index: 1;
 }
 
+/* Монета TON */
 .ton {
   position: absolute;
-
-  top: 100px;
-  left: 30%;
-  transform: translateX(-50%); /* Центр по горизонтали */
-
-  width: 200px;
-  height: auto;
+  top: 15%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 180px;
+  max-width: 30vw;
   animation: float 3s ease-in-out infinite;
   z-index: 2;
 }
@@ -101,9 +94,44 @@
 @keyframes float {
   0%,
   100% {
-    transform: translateY(0px);
+    transform: translate(-50%, 0);
   }
   50% {
-    transform: translateY(-15px);
+    transform: translate(-50%, -15px);
+  }
+}
+
+/* Адаптив для планшета */
+@media (max-width: 1024px) {
+  .content h1 {
+    font-size: 2.5rem;
+  }
+  .hand {
+    width: 50vw;
+  }
+  .ton {
+    width: 25vw;
+  }
+}
+
+/* Адаптив для телефона */
+@media (max-width: 600px) {
+  .hero {
+    height: 70vh;
+    border-radius: 0;
+  }
+  .overlay {
+    flex-direction: column;
+    text-align: center;
+    gap: 24px;
+  }
+  .imageWrapper {
+    display: none; /* убираем, чтобы не перегружать экран */
+  }
+  .content h1 {
+    font-size: 2rem;
+  }
+  .content p {
+    font-size: 1rem;
   }
 }

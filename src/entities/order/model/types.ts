@@ -8,6 +8,7 @@ export interface OrderItem {
   id: string;
   product: Product;
   quantity: number;
+  colors?: string[];
 }
 
 export interface Order {
@@ -15,4 +16,5 @@ export interface Order {
   items: OrderItem[];
   status: "pending" | "paid" | "cancelled";
   createdAt: string;
+  colors?: string[];
 }

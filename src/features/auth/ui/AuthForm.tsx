@@ -1,13 +1,13 @@
 /** @format */
 
 // src/features/auth/ui/AuthForm.tsx
-/** @format */
 
 "use client";
 
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { z } from "zod";
 import { useTranslations } from "next-intl";
 import { toast } from "react-toastify";
 
@@ -19,9 +19,53 @@ import { AuthFields } from "./AuthFields";
 import { AuthError } from "./AuthError";
 
 import styles from "./AuthForm.module.css";
-import { authSchema, AuthFormValues } from "../lib/schema";
 
-const AuthForm = () => {
+type AuthFormValues = {
+  email: string;
+  password: string;
+  name?: string;
+  confirmPassword?: string;
+};
+
+const loginSchema = z.object({
+  email: z
+    .string()
+    .nonempty({ message: "errorRequired" })
+    .email({ message: "errorInvalidEmail" }),
+  password: z
+    .string()
+    .nonempty({ message: "errorRequired" })
+    .min(6, { message: "errorMinLength" }),
+});
+
+const registerSchema = z
+  .object({
+    email: z
+      .string()
+      .nonempty({ message: "errorRequired" })
+      .email({ message: "errorInvalidEmail" }),
+    password: z
+      .string()
+      .nonempty({ message: "errorRequired" })
+      .min(6, { message: "errorMinLength" }),
+    confirmPassword: z
+      .string()
+      .nonempty({ message: "errorRequired" })
+      .min(6, { message: "errorMinLength" }),
+    name: z
+      .string()
+      .nonempty({ message: "errorNameRequired" })
+      .min(2, { message: "errorNameRequired" }),
+  })
+  .refine(
+    (vals) => vals.password === vals.confirmPassword,
+    {
+      message: "errorPasswordMismatch",
+      path: ["confirmPassword"],
+    },
+  );
+
+export const AuthForm = () => {
   const t = useTranslations("auth");
   const { user } = useAuthUser();
   const { login, register } = useAuthActions();
@@ -31,6 +75,10 @@ const AuthForm = () => {
   );
   const [error, setError] = useState<string | null>(null);
 
+  // Выбираем схему по mode
+  const currentSchema =
+    mode === "register" ? registerSchema : loginSchema;
+
   const {
     register: formRegister,
     handleSubmit,
@@ -38,7 +86,7 @@ const AuthForm = () => {
     watch,
     formState: { errors },
   } = useForm<AuthFormValues>({
-    resolver: zodResolver(authSchema),
+    resolver: zodResolver(currentSchema),
   });
 
   useEffect(() => {
@@ -55,9 +103,12 @@ const AuthForm = () => {
         password: data.password,
         name: data.name?.trim() || "",
       };
+
       register.mutate(payload, {
-        onSuccess: () =>
-          toast.success(t("registerSuccess")),
+        onSuccess: () => {
+          toast.success(t("registerSuccess"));
+          reset();
+        },
         onError: (err: any) => {
           const msg =
             err?.response?.data?.message?.[0] ||
@@ -66,17 +117,17 @@ const AuthForm = () => {
           toast.error(t("errorGeneric"));
         },
       });
-    } else {
-      console.log("hi login");
-
+    } else if (mode === "login") {
       const payload = {
         email: data.email,
         password: data.password,
       };
 
-      console.log("▶ login payload:", payload);
       login.mutate(payload, {
-        onSuccess: () => toast.success(t("loginSuccess")),
+        onSuccess: () => {
+          toast.success(t("loginSuccess"));
+          reset();
+        },
         onError: (err: any) => {
           const msg =
             err?.response?.data?.message ||
@@ -96,13 +147,14 @@ const AuthForm = () => {
     );
   }
 
-  const isLoading = login.isPending || register.isPending;
-
   return (
     <div className={styles.container}>
       <AuthTabs
         mode={mode}
-        onChange={setMode}
+        onChange={(newMode) => {
+          setMode(newMode);
+          reset();
+        }}
         onReset={reset}
       />
       <AuthError message={error} />
@@ -117,16 +169,9 @@ const AuthForm = () => {
           t={t}
           errors={errors}
         />
-        <button
-          type='submit'
-          className={styles.button}
-          disabled={isLoading}
-        >
-          {isLoading
-            ? t("loading")
-            : mode === "register"
-            ? t("register")
-            : t("login")}
+
+        <button type='submit' className={styles.button}>
+          {mode === "register" ? t("register") : t("login")}
         </button>
       </form>
     </div>

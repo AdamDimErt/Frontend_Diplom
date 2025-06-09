@@ -1,37 +1,44 @@
 /** @format */
+// src/app/ui/HomePageView.tsx
+"use client";
 
-// 📄 Файл: src/app/ui/HomePageView.tsx
-
-/** @format */
-
+import React from "react";
 import styles from "../page.module.css";
-import { ProductCard } from "@/entities/product/ui/ProductCard";
-import ProductFilter from "@/features/productFilter/ui/ProductFilter";
 import { MainHero } from "@/features/mainHero/MainHero";
-import { Product } from "@/entities/product/model/types";
+import { CategoryTabs } from "@/features/categoryTabs/ui/CategoryTabs";
+import { ProductCard } from "@/entities/product/ui/ProductCard";
+import type { Product } from "@/entities/product/model/types";
 
 interface HomePageViewProps {
-  products: Product[]; 
+  products: Product[];
   isLoading: boolean;
-  setFilters: (filters: Record<string, any>) => void;
+  setCategoryFilter: (filter: {
+    categoryId?: string;
+  }) => void;
 }
 
-export const HomePageView = ({
+export const HomePageView: React.FC<HomePageViewProps> = ({
   products,
   isLoading,
-  setFilters,
-}: HomePageViewProps) => (
+  setCategoryFilter,
+}) => (
   <div className={styles.page}>
     <MainHero />
 
-    <div className={styles.catalogGrid}>
-      <ProductFilter onChange={setFilters} />
-      <div className={styles.catalogGridProducts}>
-        {isLoading && <div>Загрузка...</div>}
-        {products?.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+    <CategoryTabs
+      onChange={(id) =>
+        setCategoryFilter({ categoryId: id })
+      }
+    />
+
+    <div className={styles.catalogGridProducts}>
+      {isLoading ? (
+        <div>Загрузка...</div>
+      ) : (
+        products.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))
+      )}
     </div>
   </div>
 );

@@ -1,8 +1,9 @@
 /** @format */
-
 // src/app/product/[id]/ui/ProductDetailsView.tsx
 
-import Image from "next/image";
+"use client";
+
+import React from "react";
 import styles from "../ProductDetails.module.scss";
 import { ProductActions } from "@/features/productActions/ui/ProductActions";
 import { getTranslationForLocale } from "@/shared/i18n/getTranslationForLocale";
@@ -12,21 +13,21 @@ import type {
   SpecificationTranslation,
 } from "@/entities/product/model/types";
 
-interface Props {
-  product: Product;
-  locale: string;
-}
-
 export function ProductDetailsView({
   product,
   locale,
-}: Props) {
+}: {
+  product: Product;
+  locale: string;
+}) {
+  // 1) Перевод названия
   const translation =
     getTranslationForLocale<ProductTranslation>(
       product.translations,
       locale,
     );
 
+  // 2) Спецификации в нужной локали
   const specs = product.specifications?.map((spec) => {
     const t =
       getTranslationForLocale<SpecificationTranslation>(
@@ -40,18 +41,20 @@ export function ProductDetailsView({
     };
   });
 
-  const image =
-    product.images?.[0] &&
-    (product.images[0].startsWith("http") ||
-      product.images[0].startsWith("/"))
-      ? product.images[0]
-      : "/400x400.png";
+  // 3) Гарантируем хотя бы одну картинку
+  const images =
+    Array.isArray(product.images) &&
+    product.images.length > 0
+      ? product.images
+      : ["/400x400.png"];
 
   return (
     <article className={styles.container}>
       <section className={styles.gallery}>
-        <Image
-          src={image}
+        {/* здесь у вас уже был <Image />, 
+            теперь при желании можно поставить ProductCarousel */}
+        <img
+          src={images[0]}
           alt={translation?.title ?? "Product"}
           width={500}
           height={500}
@@ -68,10 +71,10 @@ export function ProductDetailsView({
           <section className={styles.spec}>
             <h2>Specifications</h2>
             <ul>
-              {specs.map((s) =>
+              {specs.map((s:any) =>
                 s.name ? (
                   <li key={s.id}>
-                    {s.name}: {s.value || "—"}
+                    {s.name}: {s.value ?? "—"}
                   </li>
                 ) : null,
               )}
@@ -86,11 +89,11 @@ export function ProductDetailsView({
             <h3>Technical details</h3>
             <table className={styles.specTable}>
               <tbody>
-                {specs.map((s) =>
+                {specs.map((s:any) =>
                   s.name ? (
                     <tr key={s.id}>
-                      <td>{s.name}</td>
-                      <td>{s.value || "—"}</td>
+                      <td>{s.name}</td> 
+                      <td>{s.value ?? "—"}</td>
                     </tr>
                   ) : null,
                 )}

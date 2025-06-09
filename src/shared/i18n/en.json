@@ -53,6 +53,14 @@
     "loadingPay": "Paying…",
     "successMessage": "Order accepted! Please go to your account for tracking."
   },
+
+  "cart": {
+    "title": "Cart",
+    "empty": "Your cart is empty",
+    "address": "Delivery address",
+    "buy": "Buy",
+    "loading": "Processing..."
+  },
   "auth": {
     "login": "Login",
     "register": "Register",
@@ -60,19 +68,79 @@
     "password": "Password",
     "confirmPassword": "Confirm password",
     "name": "Name",
-    "errorRequired": "This field is required",
-    "errorMismatch": "Passwords do not match",
+    "errorRequired": "Required field",
+    "Required": "Required field",
+    "errorNameRequired": "Name is required",
+    "errorInvalidEmail": "Invalid email",
+    "errorMinLength": "Minimum 6 characters",
+    "errorPasswordMismatch": "Passwords do not match",
     "errorGeneric": "Authentication error",
     "welcome": "You are logged in as",
     "loginSuccess": "Successfully logged in",
     "registerSuccess": "Successfully registered",
     "loading": "Loading..."
   },
-  "cart": {
-    "title": "Cart",
-    "empty": "Your cart is empty",
-    "address": "Delivery address",
-    "buy": "Buy",
-    "loading": "Processing..."
+  "checkout": {
+    "stepProduct": "Select Products",
+    "stepAddress": "Delivery Address",
+    "stepPayment": "Payment",
+    "contactInfo": "Contact Info",
+    "fullName": "Full name",
+    "phoneNumber": "Phone number",
+    "email": "Email",
+    "deliveryAddress": "Delivery address",
+    "city": "City",
+    "street": "Street",
+    "floor": "Floor",
+    "apartment": "Apartment",
+    "order": "Order",
+    "errorRequired": "Required field",
+    "errorInvalidEmail": "Invalid email",
+    "loading": "Loading...",
+    "paid": "Paid",
+    "empty": "Cart is empty",
+    "total": "Total",
+    "removeAll": "Remove All",
+    "backToCart": "Back to Cart",
+    "nextToAddress": "Next: Contact & Address",
+    "stepPayment": "Payment",
+    "total": "Total",
+    "removeAll": "Remove All",
+    "payButton": "Pay Now",
+    "backToCart": "Back to Cart",
+    "loading": "Loading...",
+    "payWithTelegram": "Pay with Telegram"
+  },
+  "profile": {
+    "nav": {
+      "profile": "Profile",
+      "orders": "My orders",
+      "featured": "Featured",
+      "signOut": "Sign out"
+    },
+    "page": {
+      "title": "Your profile",
+      "email": "Email",
+      "name": "Name",
+      "surname": "Surname",
+      "phone": "Phone number",
+      "save": "Save changes",
+      "loading": "Loading..."
+    },
+    "orders": {
+      "title": "My orders",
+      "loading": "Loading...",
+      "none": "You have no orders",
+      "orderNumber": "Order #",
+      "product": "Product",
+      "quantity": "Quantity",
+      "sum": "Sum",
+      "status": "Status"
+    },
+    "featured": {
+      "title": "Featured",
+      "loading": "Loading...",
+      "none": "No featured items"
+    }
   }
 }

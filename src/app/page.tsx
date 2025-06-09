@@ -1,19 +1,19 @@
-
+/** @format */
+// src/app/page.tsx
 "use client";
 
+import React from "react";
 import { useProducts } from "@/entities/product/model/useProducts";
 import { HomePageView } from "./ui/HomePageView";
 
-
 export default function HomePage() {
-  const { products, isLoading, filters, setFilters } =
-    useProducts();
+  const { products, isLoading, setFilters } = useProducts();
 
   return (
     <HomePageView
-      products={products ?? []}
+      products={products}
       isLoading={isLoading}
-      setFilters={setFilters}
+      setCategoryFilter={setFilters}
     />
   );
 }

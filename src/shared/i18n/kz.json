@@ -43,26 +43,94 @@
       "copyright": "© 2025 Компания. Барлық құқықтар қорғалған."
     }
   },
-  "auth": {
-    "login": "Кіру",
-    "register": "Тіркелу",
-    "email": "Email",
-    "password": "Құпия сөз",
-    "confirmPassword": "Құпия сөзді растау",
-    "name": "Аты",
-    "errorRequired": "Міндетті өріс",
-    "errorMismatch": "Құпия сөздер сәйкес емес",
-    "errorGeneric": "Аутентификация қатесі",
-    "welcome": "Сіз кірдіңіз:",
-    "loginSuccess": "Сәтті кірдіңіз",
-    "registerSuccess": "Сәтті тіркелдіңіз",
-    "loading": "Жүктелуде..."
-  },
+
   "cart": {
     "title": "Себет",
     "empty": "Себет бос",
     "address": "Жеткізу мекенжайы",
     "buy": "Сатып алу",
     "loading": "Төлем өңделуде..."
+  },
+  "auth": {
+    "login": "Кіру",
+    "register": "Тіркелу",
+    "email": "Email",
+    "password": "Құпиясөз",
+    "confirmPassword": "Құпиясөзді растаңыз",
+    "name": "Аты-жөні",
+    "errorRequired": "Міндетті өріс",
+    "Required": "Міндетті өріс",
+    "errorNameRequired": "Аты-жөні міндетті",
+    "errorInvalidEmail": "Email дұрыс емес",
+    "errorMinLength": "Кемінде 6 символ",
+    "errorPasswordMismatch": "Құпиясөздер сәйкес келмейді",
+    "errorGeneric": "Аутентификация қатесі",
+    "welcome": "Сіз кірдіңіз",
+    "loginSuccess": "Сәтті кірді",
+    "registerSuccess": "Сәтті тіркелді",
+    "loading": "Жүктелуде..."
+  },
+  "checkout": {
+    "stepProduct": "Тауар таңдау",
+    "stepAddress": "Жеткізу мекенжайы",
+    "stepPayment": "Төлем",
+    "contactInfo": "Контакт мәліметтері",
+    "fullName": "Толық аты-жөні",
+    "phoneNumber": "Телефон нөмірі",
+    "email": "Email",
+    "deliveryAddress": "Жеткізу мекенжайы",
+    "city": "Қала",
+    "street": "Көше",
+    "floor": "Қабат",
+    "apartment": "Пәтер",
+    "order": "Тапсырыс беру",
+    "errorRequired": "Міндетті өріс",
+    "errorInvalidEmail": "Қате email",
+    "loading": "Жүктелуде...",
+    "paid": "Төленді",
+    "empty": "Себет бос",
+    "total": "Барлығы",
+    "removeAll": "Барлығын өшіру",
+    "backToCart": "Себетке оралу",
+    "nextToAddress": "Келесі: Байланыс & мекенжай",
+    "stepPayment": "Төлем",
+    "total": "Барлығы",
+    "removeAll": "Барлығын өшіру",
+    "payButton": "Төлеу",
+    "backToCart": "Себетке оралу",
+    "loading": "Жүктелуде...",
+    "payWithTelegram": "Telegram арқылы төлеу"
+  },
+  "profile": {
+    "nav": {
+      "profile": "Профиль",
+      "orders": "Тапсырыстарым",
+      "featured": "Таңдаулылар",
+      "signOut": "Шығу"
+    },
+    "page": {
+      "title": "Профиль",
+      "email": "Email",
+      "name": "Аты",
+      "surname": "Тегі",
+      "phone": "Телефон",
+      "save": "Сақтау",
+      "loading": "Жүктелуде..."
+    },
+    "orders": {
+      "title": "Тапсырыстарым",
+      "loading": "Жүктелуде...",
+      "none": "Сізде тапсырыс жоқ",
+      "orderNumber": "Тапсырыс №",
+      "product": "Тауар",
+      "quantity": "Саны",
+      "sum": "Сомасы",
+      "status": "Статус"
+    },
+    "featured": {
+      "title": "Таңдаулылар",
+      "loading": "Жүктелуде...",
+      "none": "Таңдаулылар жоқ"
+    }
   }
 }

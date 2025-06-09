@@ -1,0 +1,63 @@
+/**
+ * ProfileLayout.module.css
+ *
+ * @format
+ */
+
+.wrapper {
+  display: flex;
+  min-height: 100vh;
+}
+
+/* Сайдбар */
+.sidebar {
+  width: 240px;
+  background: #fff;
+  border-right: 1px solid #eaeaea;
+  padding: 24px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+}
+
+.navList {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navItem {
+  margin-bottom: 16px;
+}
+
+.navLink {
+  display: flex;
+  align-items: center;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.navLink:hover {
+  color: #0070f3;
+}
+
+.signOut {
+  margin-top: auto;
+}
+
+.signOut button {
+  background: none;
+  border: none;
+  color: #e00;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* Контент справа */
+.content {
+  flex: 1;
+  padding: 24px;
+  background: #f9f9f9;
+  box-sizing: border-box;
+}

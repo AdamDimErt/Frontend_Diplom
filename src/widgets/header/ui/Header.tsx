@@ -25,9 +25,6 @@ const Header = () => {
         <li>
           <Link href='/'>{t("shop")}</Link>
         </li>
-        <li>
-          <Link href='/about'>{t("about")}</Link>
-        </li>
       </ul>
 
       <h3

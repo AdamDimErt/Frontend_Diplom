@@ -1,14 +1,16 @@
 /** @format */
 
+// src/features/auth/ui/AuthFields.tsx
+
 import styles from "./AuthForm.module.css";
-import {
+import type {
   UseFormRegister,
   FieldErrors,
 } from "react-hook-form";
-import { AuthFormValues } from "../lib/schema";
+import type { AuthFormValues } from "../lib/schema";
 
 interface Props {
-  formRegister: UseFormRegister<AuthFormValues>;
+  formRegister: any;
   mode: "login" | "register";
   t: (key: string) => string;
   errors: FieldErrors<AuthFormValues>;

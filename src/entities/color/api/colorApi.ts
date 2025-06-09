@@ -16,3 +16,5 @@ export const getColors = async (): Promise<
     disabled: false,
   }));
 };
+
+export type { IColorItem };

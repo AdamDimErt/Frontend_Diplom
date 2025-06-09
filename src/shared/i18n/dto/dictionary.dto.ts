@@ -1,5 +1,5 @@
 /** @format */
 
 export type Dictionary = {
-  [key: string]: string | Dictionary;
+  [key: string]: string | Dictionary | any;
 };

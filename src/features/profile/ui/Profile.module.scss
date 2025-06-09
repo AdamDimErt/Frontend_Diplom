@@ -1,4 +1,8 @@
-/** @format */
+/**
+ * src/features/auth/ui/Profile.module.scss
+ *
+ * @format
+ */
 
 .profile {
   position: relative;
@@ -6,35 +10,66 @@
 }
 
 .avatar {
-  width: 35px;
-  height: 35px;
-  cursor: pointer;
+  width: 40px;
+  height: 40px;
   border-radius: 50%;
+  cursor: pointer;
+  transition: box-shadow 0.2s, transform 0.2s;
+}
+
+.avatar:hover {
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5);
+  transform: scale(1.05);
 }
 
 .dropdown {
   position: absolute;
-  top: 40px;
+  top: 50px;
   right: 0;
-  background-color: white;
-  border: 1px solid #ddd;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 8px;
-  z-index: 100;
-  min-width: 140px;
+  background: #ffffff;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  min-width: 200px;
+  z-index: 20;
+  overflow: hidden;
+}
 
-  button {
-    background: none;
-    border: none;
-    color: #333;
-    padding: 8px 12px;
-    text-align: left;
-    width: 100%;
-    cursor: pointer;
+/* Общее для всех пунктов (и ссылок, и кнопок) */
+.dropdownItem {
+  /* сброс дефолтного button/link */
+  background: none;
+  border: none;
+  outline: none;
+  text-decoration: none;
 
-    &:hover {
-      background-color: #f3f3f3;
-    }
-  }
+  /* оформление “строки” */
+  display: block;
+  width: 100%;
+  padding: 12px 20px;
+  font-size: 15px;
+  color: #1f2937;
+  text-align: left;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.dropdownItem:hover {
+  background-color: #f3f4f6;
+}
+
+/* разделитель */
+.divider {
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* особый стиль для “Выйти из профиля” */
+.signOut {
+  color: #ef4444;
+  font-weight: 600;
+}
+
+.signOut:hover {
+  background-color: #fee2e2;
 }

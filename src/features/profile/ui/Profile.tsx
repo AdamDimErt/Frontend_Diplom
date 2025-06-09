@@ -1,46 +1,51 @@
 /** @format */
+// src/features/auth/ui/Profile.tsx
 
 "use client";
 
 import React, { useState, useRef, useEffect } from "react";
+import Link from "next/link";
 import styles from "./Profile.module.scss";
 import avatar from "../assets/avatar.png";
 import { authApi } from "@/features/auth/api/authApi";
 import { useRouter } from "next/navigation";
+import { useQueryClient } from "@tanstack/react-query";
 
-export const Profile = () => {
+export const Profile: React.FC = () => {
   const [open, setOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
   const router = useRouter();
+  const queryClient = useQueryClient();
 
-  // Закрытие меню при клике вне компонента
+  // Close dropdown on outside click
   useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
+    function onClickOutside(e: MouseEvent) {
       if (
         menuRef.current &&
-        !menuRef.current.contains(event.target as Node)
+        !menuRef.current.contains(e.target as Node)
       ) {
         setOpen(false);
       }
-    };
-
-    document.addEventListener(
-      "mousedown",
-      handleClickOutside,
-    );
+    }
+    document.addEventListener("mousedown", onClickOutside);
     return () =>
       document.removeEventListener(
         "mousedown",
-        handleClickOutside,
+        onClickOutside,
       );
   }, []);
 
   const handleLogout = async () => {
     try {
       await authApi.logout();
-      router.push("/"); // Перенаправляем на страницу входа
-    } catch (error) {
-      console.error("Ошибка выхода:", error);
+      // 1) remove cached "me" so all useQuery(['me']) return undefined
+      queryClient.removeQueries({ queryKey: ["me"] });
+      // 2) close our menu
+      setOpen(false);
+      // 3) re-fetch any server components/layouts that depend on session
+      router.refresh();
+    } catch (err) {
+      console.error("Ошибка выхода:", err);
     }
   };
 
@@ -50,11 +55,23 @@ export const Profile = () => {
         className={styles.avatar}
         src={avatar.src}
         alt='avatar'
-        onClick={() => setOpen(!open)}
+        onClick={() => setOpen((v) => !v)}
       />
       {open && (
         <div className={styles.dropdown}>
-          <button onClick={handleLogout}>
+          <Link
+            href='/profile'
+            className={styles.dropdownItem}
+            onClick={() => setOpen(false)}
+          >
+            Профиль
+          </Link>
+          <hr className={styles.divider} />
+          <button
+            type='button'
+            className={`${styles.dropdownItem} ${styles.signOut}`}
+            onClick={handleLogout}
+          >
             Выйти из профиля
           </button>
         </div>

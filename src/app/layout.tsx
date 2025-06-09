@@ -1,5 +1,8 @@
 /** @format */
 
+// src/app/layout.tsx
+/** @format */
+
 import { getLocale, getMessages } from "next-intl/server";
 import { NextIntlClientProvider } from "next-intl";
 import { PropsWithChildren } from "react";
@@ -10,6 +13,7 @@ import type { Metadata } from "next";
 
 import "@/shared/styles/globals.css";
 import "@/shared/styles/variables.css";
+import { CheckoutProvider } from "@/features/checkout/model/useCheckout";
 
 export async function generateMetadata(): Promise<Metadata> {
   const locale = await getLocale();
@@ -35,7 +39,9 @@ export default async function RootLayout({
       <body>
         <NextIntlClientProvider messages={messages}>
           <Providers>
-            <AppShell>{children}</AppShell>
+            <CheckoutProvider>
+              <AppShell>{children}</AppShell>
+            </CheckoutProvider>
           </Providers>
         </NextIntlClientProvider>
       </body>

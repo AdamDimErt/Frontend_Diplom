@@ -1,16 +1,16 @@
 /** @format */
 
+// src/features/cart/ui/CartItemView.tsx
+
 import styles from "./CartButton.module.css";
-import { useCartButton } from "../model/useCartButton";
 import type { CartItem } from "@/entities/cart/model/types";
 
 interface Props {
   item: CartItem;
+  onRemove: () => void;
 }
 
-export const CartItemView = ({ item }: Props) => {
-  const { removeItem } = useCartButton();
-
+export const CartItemView = ({ item, onRemove }: Props) => {
   return (
     <div className={styles.item}>
       <img
@@ -26,10 +26,7 @@ export const CartItemView = ({ item }: Props) => {
           {item.quantity} × {item.product?.priceTenge} ₸
         </p>
       </div>
-      <button
-        className={styles.remove}
-        onClick={() => removeItem(item.id)}
-      >
+      <button className={styles.remove} onClick={onRemove}>
         ✕
       </button>
     </div>

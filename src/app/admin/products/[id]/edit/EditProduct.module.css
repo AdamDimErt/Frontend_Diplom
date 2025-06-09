@@ -1,0 +1,152 @@
+/** @format */
+
+.wrapper {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+.title {
+  text-align: center;
+  margin-bottom: 1rem;
+  font-size: 1.5rem;
+}
+.loader {
+  text-align: center;
+  padding: 2rem;
+  font-size: 1.25rem;
+}
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+.field {
+  display: flex;
+  flex-direction: column;
+}
+.field label {
+  margin-bottom: 0.25rem;
+  font-weight: 500;
+}
+.field input,
+.field select,
+.field textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 1rem;
+}
+.multi {
+  height: 100px;
+}
+.fieldset {
+  border: 1px solid #ddd;
+  padding: 1rem;
+  border-radius: 6px;
+}
+.legend {
+  font-weight: bold;
+}
+.langBlock {
+  display: grid;
+  grid-template-columns: 40px 1fr 1fr;
+  gap: 0.5rem;
+  margin-bottom: 0.75rem;
+  align-items: center;
+}
+.specBlock {
+  background: #f9f9f9;
+  padding: 0.75rem;
+  border-radius: 6px;
+  margin-bottom: 0.75rem;
+}
+.specHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+.btnDanger {
+  background: #e53e3e;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0 0.5rem;
+  cursor: pointer;
+}
+.btnAdd {
+  align-self: flex-start;
+  padding: 0.5rem 1rem;
+  border: none;
+  background: #3182ce;
+  color: #fff;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.uploadBtn {
+  display: inline-block;
+  padding: 0.6rem 1.2rem;
+  background: #3182ce;
+  color: #fff;
+  border-radius: 4px;
+  position: relative;
+  cursor: pointer;
+}
+.uploadBtn input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+.previews {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+.previewItem {
+  position: relative;
+}
+.previewItem img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+.btnRemovePreview {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+  background: #e53e3e;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  cursor: pointer;
+}
+.btnSubmit {
+  padding: 0.75rem;
+  border: none;
+  background: #38a169;
+  color: #fff;
+  font-size: 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+}
+.btnSubmit:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

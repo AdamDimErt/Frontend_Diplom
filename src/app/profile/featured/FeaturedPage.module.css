@@ -1,0 +1,116 @@
+/**
+ * FeaturedPage.module.css
+ *
+ * @format
+ */
+
+.page {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+.title {
+  font-size: 24px;
+  font-weight: 600;
+  margin-bottom: 16px;
+  color: #333;
+}
+
+.loader {
+  text-align: center;
+  padding: 40px 0;
+  font-size: 16px;
+  color: #777;
+}
+
+.empty {
+  text-align: center;
+  font-size: 18px;
+  color: #999;
+  padding: 32px 0;
+}
+
+.list {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(160px, 1fr)
+  );
+  gap: 16px;
+  margin-top: 16px;
+  list-style: none;
+  padding: 0;
+}
+
+.item {
+  background: #f8f8f8;
+  border-radius: 6px;
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.2s;
+}
+
+.item:hover {
+  transform: translateY(-4px);
+}
+
+.image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+}
+
+.productTitle {
+  font-size: 16px;
+  font-weight: 500;
+  margin: 8px 0;
+  color: #222;
+}
+
+.price {
+  font-size: 14px;
+  color: #555;
+  margin-bottom: 12px;
+}
+/* src/app/profile/featured/FeaturedPage.module.css */
+.list {
+  display: grid;
+  gap: 1rem;
+}
+.item {
+  position: relative;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.image {
+  width: 100%;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.productTitle {
+  margin-top: 0.5rem;
+  font-weight: bold;
+}
+.price {
+  margin-top: 0.25rem;
+  color: #3498db;
+}
+.removeButton {
+  margin-top: 0.5rem;
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 4px;
+  cursor: pointer;
+}
+.removeButton:disabled {
+  opacity: 0.6;
+  cursor: default;
+}

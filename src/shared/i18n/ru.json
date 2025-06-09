@@ -44,6 +44,14 @@
       "copyright": "© 2025 Компания. Все права защищены."
     }
   },
+
+  "cart": {
+    "title": "Корзина",
+    "empty": "Корзина пуста",
+    "address": "Адрес доставки",
+    "buy": "Купить",
+    "loading": "Оформление..."
+  },
   "auth": {
     "login": "Войти",
     "register": "Зарегистрироваться",
@@ -51,15 +59,50 @@
     "password": "Пароль",
     "confirmPassword": "Подтвердите пароль",
     "name": "Имя",
+
     "errorRequired": "Обязательное поле",
-    "errorMismatch": "Пароли не совпадают",
+    "errorNameRequired": "Имя обязательно",
+    "errorInvalidEmail": "Неверный email",
+    "errorMinLength": "Минимум 6 символов",
+    "errorPasswordMismatch": "Пароли не совпадают",
     "errorGeneric": "Ошибка авторизации",
+    "Required": "Обязательное поле",
     "welcome": "Вы вошли как",
     "loginSuccess": "Вы успешно вошли",
     "registerSuccess": "Вы успешно зарегистрированы",
     "loading": "Загрузка..."
   },
   "checkout": {
+    "stepProduct": "Выбор товара",
+    "stepAddress": "Адрес доставки",
+    "stepPayment": "Оплата",
+    "contactInfo": "Контактная информация",
+    "fullName": "Полное имя",
+    "phoneNumber": "Номер телефона",
+    "email": "Email",
+    "deliveryAddress": "Адрес доставки",
+    "city": "Город",
+    "street": "Улица",
+    "floor": "Этаж",
+    "apartment": "Квартира",
+    "order": "Оформить",
+    "errorRequired": "Обязательное поле",
+    "errorInvalidEmail": "Неверный формат email",
+    "loading": "Загрузка...",
+    "paid": "Оплачено",
+    "empty": "Корзина пуста",
+    "total": "Итого",
+    "removeAll": "Удалить все",
+    "backToCart": "Назад к корзине",
+    "nextToAddress": "Далее: Контакты и адрес",
+    "stepPayment": "Оплата",
+    "total": "Итого",
+    "removeAll": "Удалить все",
+    "payButton": "Оплатить",
+    "backToCart": "Назад к корзине",
+    "loading": "Загрузка...",
+    "payWithTelegram": "Оплатить через Telegram",
+    "errorInitPayment": "Ошибка инициализации платежа",
     "title": "Оформление заказа",
     "contactLabel": "Контактный телефон",
     "addressLabel": "Адрес доставки",
@@ -67,13 +110,39 @@
     "payButton": "Оплатить в TON",
     "loadingCreate": "Создаём заказ...",
     "loadingPay": "Оплата…",
-    "successMessage": "Заказ принятый! Перейдите в личный кабинет для отслеживания."
+    "successMessage": "Заказ принятый! Перейдите в личный кабинет для отслеживания.",
+    "color": "Цвет"
   },
-  "cart": {
-    "title": "Корзина",
-    "empty": "Корзина пуста",
-    "address": "Адрес доставки",
-    "buy": "Купить",
-    "loading": "Оформление..."
+  "profile": {
+    "nav": {
+      "profile": "Профиль",
+      "orders": "Мои заказы",
+      "featured": "Избранное",
+      "signOut": "Выйти"
+    },
+    "page": {
+      "title": "Ваш профиль",
+      "email": "Email",
+      "name": "Имя",
+      "surname": "Фамилия",
+      "phone": "Телефон",
+      "save": "Сохранить",
+      "loading": "Загрузка..."
+    },
+    "orders": {
+      "title": "Мои заказы",
+      "loading": "Загрузка...",
+      "none": "У вас нет заказов",
+      "orderNumber": "Заказ #",
+      "product": "Товар",
+      "quantity": "Кол-во",
+      "sum": "Сумма",
+      "status": "Статус"
+    },
+    "featured": {
+      "title": "Избранное",
+      "loading": "Загрузка...",
+      "none": "Нет избранных товаров"
+    }
   }
 }

@@ -1,17 +1,54 @@
-/** @format */
+/**
+ * Общие отступы и нормализация
+ *
+ * @format
+ */
+
 .page {
+  padding: 0 16px;
+  box-sizing: border-box;
 }
 
+/* Контейнер: фильтр + сетка карточек */
 .catalogGrid {
   display: flex;
-
   gap: 30px;
+  align-items: flex-start;
+  flex-wrap: nowrap;
 }
 
-.catalogGrid__products {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  width: 100%;
-  justify-content: center;
+/* Если фильтр обёрнут в отдельный блок, 
+   он займёт ровно 240px: */
+.catalogGridFilter {
+  flex: 0 0 240px;
+}
+
+/* Сетка карточек продуктов */
+.catalogGridProducts {
+  flex: 1;
+  display: grid;
+  /* сколько колонок вмещается, каждая не уже 240px */
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(240px, 1fr)
+  );
+  gap: 24px;
+}
+
+/* Плавный переход на колонки-строки */
+@media (max-width: 1024px) {
+  .catalogGrid {
+    flex-direction: column;
+    gap: 16px;
+  }
+  .catalogGridFilter {
+    width: 100%;
+  }
+}
+
+/* Мобильный вид — одна колонка */
+@media (max-width: 600px) {
+  .catalogGridProducts {
+    grid-template-columns: 1fr;
+  }
 }

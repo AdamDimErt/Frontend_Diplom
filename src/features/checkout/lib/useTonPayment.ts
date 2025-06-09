@@ -1,25 +1,42 @@
 /** @format */
+// src/features/checkout/lib/useTonPayment.ts
 
-import { useQueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { markOrderPaid } from "@/entities/order/api/orderApi";
 import { TON_RECEIVER } from "@/shared/config/ton";
 import type { OrderItem } from "@/entities/order/model/types";
 
+/**
+ * Хук для оплаты через TON Connect.
+ *
+ * @param tonRef   — реф на инстанс TonConnectUI
+ * @param items    — список позиций заказа
+ * @param orderId  — ID заказа в бэке
+ */
 export const useTonPayment = (
-  tonRef: any,
-  items: OrderItem[],
+  tonRef: React.RefObject<any>,
+  items: OrderItem[] = [],
   orderId?: string,
 ) => {
   const queryClient = useQueryClient();
 
-  const totalTon = items.reduce(
-    (acc, item) =>
-      acc + item.product.priceTon * item.quantity,
+  // Если items вдруг undefined — заменяем на пустой массив
+  const totalTon = (items ?? []).reduce(
+    (sum, item) =>
+      sum + item.product.priceTon * item.quantity,
     0,
   );
 
-  return async () => {
-    try {
+  const mutation = useMutation<void, Error, void>({
+    mutationFn: async () => {
+      if (!tonRef.current) {
+        throw new Error(
+          "TON Connect UI не инициализировано",
+        );
+      }
       const tx = {
         validUntil: Math.floor(Date.now() / 1000) + 600,
         messages: [
@@ -29,25 +46,29 @@ export const useTonPayment = (
           },
         ],
       };
-
-      const result = await tonRef.current?.sendTransaction(
+      const result = await tonRef.current.sendTransaction(
         tx,
       );
-
-      if (result?.boc) {
-        await markOrderPaid({
-          orderId: orderId!,
-          txHash: result.boc,
-        });
-        queryClient.invalidateQueries({
-          queryKey: ["orders"],
-        });
-        alert("✅ Оплата прошла успешно!");
-      } else {
-        console.log("🟡 Пользователь отменил оплату.");
+      if (!result?.boc) {
+        throw new Error("Пользователь отменил оплату");
       }
-    } catch (error: any) {
-      console.warn("❌ TON Connect ошибка:", error.message);
-    }
-  };
+      // Ставим статус заказа — оплачено
+      await markOrderPaid({
+        orderId: orderId!,
+        txHash: result.boc,
+      });
+    },
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ["orders"],
+      });
+      alert("✅ Оплата прошла успешно!");
+    },
+    onError: (err) => {
+      console.warn("❌ Ошибка TON-платежа:", err);
+      alert("Ошибка при оплате TON: " + err.message);
+    },
+  });
+
+  return () => mutation.mutate();
 };

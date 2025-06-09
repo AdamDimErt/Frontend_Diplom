@@ -22,11 +22,16 @@ export interface Specification {
 }
 
 export interface Product {
+  colors: any;
+  category: any;
+  quantity: number | undefined;
+  availableColors: string[];
   id: string;
   priceTon: number;
   priceTenge: number;
   images: string[];
   brand: {
+    id: string;
     name: string;
   };
   translations: ProductTranslation[];

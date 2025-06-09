@@ -1,26 +1,50 @@
 /** @format */
 
+// src/entities/product/model/useProducts.ts
+import { useState } from "react";
+import { useLocale } from "next-intl";
 import { useQuery } from "@tanstack/react-query";
 import {
   getFilteredProducts,
-  getProductsByLang,
+  getProductsByCategory,
 } from "@/entities/product/api/productApi";
-import { useLocale } from "next-intl";
-import { useState } from "react";
+import type { Product } from "./types";
 
 export function useProducts() {
   const locale = useLocale();
-  const [filters, setFilters] = useState({});
 
-  const hasActiveFilters = Object.keys(filters).length > 0;
+  // хранит только categoryId
+  const [filters, setFiltersState] = useState<{
+    categoryId?: string;
+  }>({});
 
-  const { data: products, isLoading } = useQuery({
-    queryKey: ["products", locale, filters],
-    queryFn: () =>
-      hasActiveFilters
-        ? getFilteredProducts(locale, filters)
-        : getProductsByLang(locale),
+  const setFilters = (newFilter: {
+    categoryId?: string;
+  }) => {
+    setFiltersState(newFilter);
+  };
+
+  // выбор функции запроса в зависимости от наличия categoryId
+  const queryFn = () => {
+    if (filters.categoryId) {
+      // если выбрана категория — получаем товары из неё
+      return getProductsByCategory(filters.categoryId);
+    }
+    // иначе — общий фильтр (search, brand, price и т.п.)
+    return getFilteredProducts(locale, {
+      // здесь можно прокинуть и другие фильтры, если добавите
+      // в интерфейс getFilteredProducts
+    });
+  };
+
+  const { data: products = [], isLoading } = useQuery<
+    Product[],
+    Error
+  >({
+    queryKey: ["products", locale, filters.categoryId],
+    queryFn,
+    staleTime: 5 * 60_000,
   });
 
-  return { products, isLoading, filters, setFilters };
+  return { products, isLoading, setFilters };
 }

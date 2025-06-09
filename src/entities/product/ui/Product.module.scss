@@ -8,8 +8,8 @@
   width: 200px;
   transition: transform 0.2s ease;
 
-  overflow: visible; 
-  margin-bottom: 60px; 
+  overflow: visible;
+  margin-bottom: 60px;
 }
 
 .card:hover {
@@ -70,4 +70,26 @@
 
 .addButton:hover {
   background-color: #1f7edb;
+}
+.editButton {
+  position: absolute;
+  top: 8px;
+  left: 8px;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #333;
+  z-index: 2;
+}
+.deleteButton{
+    position: absolute;
+  bottom: 8px;
+  left: 8px;
+  background: transparent;
+  border: none;
+  padding: 4px;
+  cursor: pointer;
+  color: #333;
+  z-index: 2;
 }

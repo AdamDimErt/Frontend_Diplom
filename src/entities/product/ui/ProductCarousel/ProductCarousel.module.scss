@@ -51,3 +51,86 @@
 .thumbnail {
   border-radius: 4px;
 }
+/* src/features/product/ui/ProductCarousel.module.scss */
+
+.carouselContainer {
+  display: flex;
+  flex-direction: row-reverse; /* главное фото слева, миниатюры справа */
+  align-items: flex-start;
+  gap: 1rem;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.mainImageContainer {
+  flex: 1 1 auto;
+  max-width: 400px;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+  border-radius: 8px;
+  position: relative;
+}
+
+.mainImage {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* столбик миниатюр */
+.thumbnailsContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+/* рамка вокруг превью */
+.thumbnailWrapper {
+  width: 60px;
+  height: 60px;
+  overflow: hidden;
+  border-radius: 4px;
+  cursor: pointer;
+  opacity: 0.6;
+  transition: opacity 0.2s, border-color 0.2s;
+  border: 2px solid transparent;
+}
+.thumbnailWrapper:hover {
+  opacity: 1;
+}
+.activeThumbnail {
+  opacity: 1;
+  border-color: #007bff;
+}
+
+/* само изображение — всегда по контейнеру */
+.thumbnail {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
+/* ограничим не более 3 миниатюр и сделаем прокрутку, если больше */
+.thumbnailsContainer {
+  max-height: calc(60px * 3 + 0.5rem * 2);
+  overflow-y: auto;
+}
+
+/* на мобилке миниатюры в ряд */
+@media (max-width: 600px) {
+  .thumbnailsContainer {
+    flex-direction: row;
+    max-width: 100%;
+    max-height: none;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+  }
+  .thumbnailWrapper {
+    flex: 0 0 50px;
+    height: 50px;
+  }
+}

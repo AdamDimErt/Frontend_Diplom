@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@hookform/resolvers": "^5.0.1",
+    "@stripe/react-stripe-js": "^3.7.0",
+    "@stripe/stripe-js": "^7.3.1",
     "@tanstack/react-query": "^5.74.0",
     "@tonconnect/ui": "^2.1.0",
     "axios": "^1.8.4",
@@ -25,7 +27,9 @@
     "react-i18next": "^15.4.1",
     "react-icons": "^5.5.0",
     "react-range": "^1.10.0",
+    "react-select": "^5.10.1",
     "react-toastify": "^11.0.5",
+    "stripe": "^18.2.1",
     "zod": "^3.24.3"
   },
   "devDependencies": {
