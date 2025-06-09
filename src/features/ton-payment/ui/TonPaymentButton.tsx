@@ -13,7 +13,7 @@ export const TonPaymentButton = () => {
     if (!document.querySelector("tc-root")) {
       tonConnectRef.current = new TonConnectUI({
         manifestUrl:
-          "https://frontend-diplom-sss5.vercel.app/tonconnect-manifest.json",
+          "https://adamdim-2911717626d6.herokuapp.com/tonconnect-manifest.json",
         buttonRootId: "ton-connect",
       });
     }
