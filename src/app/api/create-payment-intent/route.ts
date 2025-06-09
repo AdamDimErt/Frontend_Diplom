@@ -4,11 +4,8 @@
 
 import { NextRequest, NextResponse } from "next/server";
 import Stripe from "stripe";
-
-const stripe = new Stripe(
-  "sk_test_51RDtTOIjJP5SAFomFQaTjQ0kxppZ8gONOYJrrAfCm3mvZSPI4MFefUov4m2X6J6fPfNOw70hkskgwI4sCkj5PgIe00K03bqcub",
-  {},
-);
+// sk_test_51RDtTOIjJP5SAFomFQaTjQ0kxppZ8gONOYJrrAfCm3mvZSPI4MFefUov4m2X6J6fPfNOw70hkskgwI4sCkj5PgIe00K03bqcub
+const stripe = new Stripe("123", {});
 
 export async function POST(req: NextRequest) {
   const { amount /* в тенге */, currency = "KZT" } =
